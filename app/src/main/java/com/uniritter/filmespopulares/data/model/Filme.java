@@ -7,9 +7,12 @@ public class Filme implements Serializable {
     private final String titulo;
     private final String caminhoPoster;
 
-    public Filme(String titulo, String caminhoPoster) {
+    private final String descricaoFilme;
+
+    public Filme(String titulo, String caminhoPoster, String descricaoFilme) {
         this.titulo = titulo;
         this.caminhoPoster = caminhoPoster;
+        this.descricaoFilme = descricaoFilme;
     }
 
     public String getTitulo() {
@@ -17,4 +20,6 @@ public class Filme implements Serializable {
     }
 
     public String getCaminhoPoster() { return caminhoPoster; }
+
+    public String getDescricaoFilme() { return descricaoFilme; }
 }

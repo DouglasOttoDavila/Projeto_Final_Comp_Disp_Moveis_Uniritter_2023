@@ -21,7 +21,7 @@ public class ListaFilmesPresenter implements ListaFilmesContrato.ListaFilmesPres
         @Override
         public void obtemFilmes() {
                 ApiService.getInstance()
-                        .obterFilmesPopulares("461b2ec0f0dc520e20da940100aefc68")
+                        .obterFilmesPopulares("461b2ec0f0dc520e20da940100aefc68", "pt-BR")
                         .enqueue(new Callback<FilmesResult>() {
                                 @Override
                                 public void onResponse(Call<FilmesResult> call, Response<FilmesResult> response) {
