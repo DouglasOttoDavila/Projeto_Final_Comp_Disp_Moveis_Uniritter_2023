@@ -19,7 +19,7 @@ public class CadastroActivity extends AppCompatActivity {
     //Cria o binding para a activity
     private ActivityCadastroBinding binding;
 
-    //Declara o objeto de autenticação do Firebase
+    //Declara o objeto de autenticação do FirebaseService
     private FirebaseAuth mAuth;
 
     @Override
@@ -31,7 +31,7 @@ public class CadastroActivity extends AppCompatActivity {
         View view = binding.getRoot();
         setContentView(view);
 
-        //Inicializa o objeto de autenticação do Firebase
+        //Inicializa o objeto de autenticação do FirebaseService
         mAuth = FirebaseAuth.getInstance();
 
         //Recupera os componentes da tela
