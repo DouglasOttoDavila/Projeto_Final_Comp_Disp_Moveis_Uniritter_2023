@@ -1,4 +1,4 @@
-package com.uniritter.filmespopulares.ui.listaFilmes;
+package com.uniritter.to100ideia.ui.listaFilmesPopulares;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,7 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.squareup.picasso.Picasso;
-import com.uniritter.filmespopulares.data.model.Filme;
+import com.uniritter.to100ideia.data.model.Filme;
 import com.unirriter.api_filmes.R;
 
 import java.util.ArrayList;

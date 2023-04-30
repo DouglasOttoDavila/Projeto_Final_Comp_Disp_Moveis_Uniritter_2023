@@ -1,8 +1,7 @@
-package com.uniritter.filmespopulares.data.network;
+package com.uniritter.to100ideia.data.network;
 
-import com.uniritter.filmespopulares.data.network.response.FilmesResult;
+import com.uniritter.to100ideia.data.network.response.FilmesResult;
 
-import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Query;

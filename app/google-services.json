@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "763996987425",
+    "project_id": "to100ideia-app",
+    "storage_bucket": "to100ideia-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:763996987425:android:ac96de4db409791af88360",
+        "android_client_info": {
+          "package_name": "com.unirriter.api_filmes"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "763996987425-kv11iq12i6gk8bcivpfajst1ogtro78m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAXm2lUA6k8y40rb_N2FmN9wiTRc5RsqtY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "763996987425-kv11iq12i6gk8bcivpfajst1ogtro78m.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

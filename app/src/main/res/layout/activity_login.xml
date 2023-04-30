@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/red_bkg"
+    tools:context="com.uniritter.to100ideia.ui.login.LoginActivity">
+
+    <EditText
+        android:id="@+id/senhaField"
+        android:layout_width="300dp"
+        android:layout_height="30dp"
+        android:background="@drawable/edit_text_rounded_corners_background"
+        android:ems="10"
+        android:fontFamily="@font/alata"
+        android:inputType="textPassword"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="@+id/emailField"
+        app:layout_constraintStart_toStartOf="@+id/emailField"
+        app:layout_constraintTop_toBottomOf="@+id/senhaPlaceholder" />
+
+    <TextView
+        android:id="@+id/emailPlaceholder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/alata"
+        android:text="E m a i l"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/logoLogin"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="@+id/logoLogin"
+        app:layout_constraintTop_toBottomOf="@+id/frase2Text" />
+
+    <EditText
+        android:id="@+id/emailField"
+        android:layout_width="300dp"
+        android:layout_height="30dp"
+        android:background="@drawable/edit_text_rounded_corners_background"
+        android:ems="10"
+        android:fontFamily="@font/alata"
+        android:inputType="textWebEmailAddress|textEmailAddress"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="@+id/emailPlaceholder"
+        app:layout_constraintStart_toStartOf="@+id/emailPlaceholder"
+        app:layout_constraintTop_toBottomOf="@+id/emailPlaceholder" />
+
+    <TextView
+        android:id="@+id/senhaPlaceholder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/alata"
+        android:text="S e n h a"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/emailField"
+        app:layout_constraintStart_toStartOf="@+id/emailField"
+        app:layout_constraintTop_toBottomOf="@+id/emailField" />
+
+    <Button
+        android:id="@+id/acessarBtn"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="#1C1C1C"
+        android:fontFamily="@font/alata"
+        android:text="Acessar"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="@+id/senhaField"
+        app:layout_constraintStart_toStartOf="@+id/senhaField"
+        app:layout_constraintTop_toBottomOf="@+id/senhaField" />
+
+    <Button
+        android:id="@+id/esqueciSenhaBtn"
+        android:layout_width="300dp"
+        android:layout_height="40dp"
+        android:backgroundTint="#AA0000"
+        android:fontFamily="@font/alata"
+        android:text="️Esqueci minha senha"
+        android:textSize="10sp"
+        app:layout_constraintBottom_toTopOf="@+id/creditoFooter"
+        app:layout_constraintEnd_toEndOf="@+id/acessarBtn"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/acessarBtn"
+        app:layout_constraintTop_toBottomOf="@+id/acessarBtn"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ImageView
+        android:id="@+id/logoLogin"
+        android:layout_width="287dp"
+        android:layout_height="224dp"
+        android:layout_marginTop="40dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/tosemideia" />
+
+    <TextView
+        android:id="@+id/dispMoveisJeanPaul"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:fontFamily="@font/alata"
+        android:text="Computação para Dispositivos Móveis - Prof. Jean Paul (Uniritter)"
+        android:textColor="@color/white"
+        android:textSize="9sp"
+        app:layout_constraintBottom_toBottomOf="@+id/ritterLogo"
+        app:layout_constraintStart_toEndOf="@+id/ritterLogo" />
+
+    <TextView
+        android:id="@+id/creditoFooter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:fontFamily="@font/alata"
+        android:text="Criado por Douglas Otto D'Avila - Abr/2023"
+        android:textColor="@color/white"
+        android:textSize="9sp"
+        app:layout_constraintStart_toEndOf="@+id/ritterLogo"
+        app:layout_constraintTop_toTopOf="@+id/ritterLogo" />
+
+    <ImageView
+        android:id="@+id/theMovieDbLogo"
+        android:layout_width="83dp"
+        android:layout_height="26dp"
+        android:layout_marginBottom="4dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/tmdb" />
+
+    <ImageView
+        android:id="@+id/ritterLogo"
+        android:layout_width="26dp"
+        android:layout_height="27dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginBottom="5dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/uniritter" />
+
+    <TextView
+        android:id="@+id/frase1Text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/alata"
+        android:text="Esqueça a indecisão..."
+        android:textColor="@color/white"
+        android:textStyle="bold|italic"
+        app:layout_constraintEnd_toEndOf="@+id/logoLogin"
+        app:layout_constraintStart_toStartOf="@+id/logoLogin"
+        app:layout_constraintTop_toBottomOf="@+id/logoLogin" />
+
+    <TextView
+        android:id="@+id/frase2Text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:fontFamily="@font/alata"
+        android:text="Nós temos a SOLUÇÃO!"
+        android:textColor="@color/white"
+        android:textStyle="bold|italic"
+        app:layout_constraintEnd_toEndOf="@+id/logoLogin"
+        app:layout_constraintStart_toStartOf="@+id/logoLogin"
+        app:layout_constraintTop_toBottomOf="@+id/frase1Text" />
+
+    <Button
+        android:id="@+id/cadastraBtn"
+        android:layout_width="300dp"
+        android:layout_height="40dp"
+        android:backgroundTint="#AA0000"
+        android:fontFamily="@font/alata"
+        android:text="Novo usuário? Clique aqui!"
+        android:textSize="10sp"
+        app:layout_constraintEnd_toEndOf="@+id/esqueciSenhaBtn"
+        app:layout_constraintStart_toStartOf="@+id/esqueciSenhaBtn"
+        app:layout_constraintTop_toBottomOf="@+id/esqueciSenhaBtn" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

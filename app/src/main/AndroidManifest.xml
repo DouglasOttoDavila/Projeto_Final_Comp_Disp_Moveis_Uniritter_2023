@@ -16,10 +16,13 @@
         android:theme="@style/Theme.APIFilmes"
         tools:targetApi="31">
         <activity
-            android:name="com.uniritter.filmespopulares.ui.detalhesfilme.DetalhesFilmeActivity"
+            android:name="com.uniritter.to100ideia.ui.cadastro.CadastroActivity"
             android:exported="false" />
         <activity
-            android:name="com.uniritter.filmespopulares.ui.listaFilmes.ListaFilmesActivity"
+            android:name="com.uniritter.to100ideia.ui.menu.MenuActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.uniritter.to100ideia.ui.login.LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -27,6 +30,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name="com.uniritter.to100ideia.ui.detalhesfilme.DetalhesFilmeActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.uniritter.to100ideia.ui.listaFilmesPopulares.ListaFilmesActivity"
+            android:exported="false" />
     </application>
 
 </manifest>

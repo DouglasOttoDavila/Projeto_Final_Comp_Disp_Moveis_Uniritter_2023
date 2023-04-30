@@ -1,6 +1,4 @@
-package com.uniritter.filmespopulares.data.network;
-
-import com.squareup.moshi.Moshi;
+package com.uniritter.to100ideia.data.network;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.moshi.MoshiConverterFactory;

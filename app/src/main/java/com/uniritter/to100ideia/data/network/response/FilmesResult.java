@@ -1,4 +1,4 @@
-package com.uniritter.filmespopulares.data.network.response;
+package com.uniritter.to100ideia.data.network.response;
 
 import com.squareup.moshi.Json;
 

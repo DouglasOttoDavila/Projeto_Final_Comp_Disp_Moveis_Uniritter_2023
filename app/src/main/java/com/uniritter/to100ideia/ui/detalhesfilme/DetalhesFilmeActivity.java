@@ -1,15 +1,13 @@
-package com.uniritter.filmespopulares.ui.detalhesfilme;
+package com.uniritter.to100ideia.ui.detalhesfilme;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.graphics.Bitmap;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.squareup.picasso.Picasso;
-import com.uniritter.filmespopulares.data.model.Filme;
+import com.uniritter.to100ideia.data.model.Filme;
 import com.unirriter.api_filmes.R;
 
 public class DetalhesFilmeActivity extends AppCompatActivity {
@@ -33,7 +31,5 @@ public class DetalhesFilmeActivity extends AppCompatActivity {
         Picasso.get()
                 .load("https://image.tmdb.org/t/p/"+ resolution + "/" + filme.getCaminhoPoster())
                 .into(imagePosterFilme);
-
-        //getWindow().getDecorView().setBackgroundColor(Color.WHITE);
     }
 }

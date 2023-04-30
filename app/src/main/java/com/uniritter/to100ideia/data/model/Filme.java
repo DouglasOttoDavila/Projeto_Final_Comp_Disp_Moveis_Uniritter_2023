@@ -1,4 +1,4 @@
-package com.uniritter.filmespopulares.data.model;
+package com.uniritter.to100ideia.data.model;
 
 import java.io.Serializable;
 

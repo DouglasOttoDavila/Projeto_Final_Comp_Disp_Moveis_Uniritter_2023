@@ -1,9 +1,9 @@
-package com.uniritter.filmespopulares.ui.listaFilmes;
+package com.uniritter.to100ideia.ui.listaFilmesPopulares;
 
-import com.uniritter.filmespopulares.data.mapper.FilmeMapper;
-import com.uniritter.filmespopulares.data.model.Filme;
-import com.uniritter.filmespopulares.data.network.ApiService;
-import com.uniritter.filmespopulares.data.network.response.FilmesResult;
+import com.uniritter.to100ideia.data.mapper.FilmeMapper;
+import com.uniritter.to100ideia.data.model.Filme;
+import com.uniritter.to100ideia.data.network.ApiService;
+import com.uniritter.to100ideia.data.network.response.FilmesResult;
 
 import java.util.List;
 

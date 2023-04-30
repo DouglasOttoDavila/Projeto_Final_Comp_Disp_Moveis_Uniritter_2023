@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/red_bkg"
+    tools:context="com.uniritter.to100ideia.ui.cadastro.CadastroActivity">
+
+    <EditText
+        android:id="@+id/senhaCadastroField"
+        android:layout_width="300dp"
+        android:layout_height="30dp"
+        android:background="@drawable/edit_text_rounded_corners_background"
+        android:ems="10"
+        android:fontFamily="@font/alata"
+        android:inputType="textPassword"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="@+id/emailCadastroField"
+        app:layout_constraintStart_toStartOf="@+id/emailCadastroField"
+        app:layout_constraintTop_toBottomOf="@+id/senhaCadastroPlaceholder" />
+
+    <TextView
+        android:id="@+id/emailCadastroPlaceholder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/alata"
+        android:text="E m a i l"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/cadastroText"
+        app:layout_constraintStart_toStartOf="@+id/cadastroText"
+        app:layout_constraintTop_toBottomOf="@+id/cadastroText" />
+
+    <EditText
+        android:id="@+id/emailCadastroField"
+        android:layout_width="300dp"
+        android:layout_height="30dp"
+        android:background="@drawable/edit_text_rounded_corners_background"
+        android:ems="10"
+        android:fontFamily="@font/alata"
+        android:inputType="textWebEmailAddress|textEmailAddress"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="@+id/emailCadastroPlaceholder"
+        app:layout_constraintStart_toStartOf="@+id/emailCadastroPlaceholder"
+        app:layout_constraintTop_toBottomOf="@+id/emailCadastroPlaceholder" />
+
+    <TextView
+        android:id="@+id/senhaCadastroPlaceholder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/alata"
+        android:text="S e n h a"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/emailCadastroField"
+        app:layout_constraintStart_toStartOf="@+id/emailCadastroField"
+        app:layout_constraintTop_toBottomOf="@+id/emailCadastroField" />
+
+    <Button
+        android:id="@+id/cadastrarBtn"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="#1C1C1C"
+        android:fontFamily="@font/alata"
+        android:text="Cadastrar"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="@+id/senhaCadastroField"
+        app:layout_constraintStart_toStartOf="@+id/senhaCadastroField"
+        app:layout_constraintTop_toBottomOf="@+id/senhaCadastroField"/>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="@android:style/Widget.DeviceDefault.Light.ProgressBar.Horizontal"
+        android:layout_width="300dp"
+        android:layout_height="15dp"
+        android:layout_margin="0dp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="@+id/cadastrarBtn"
+        app:layout_constraintStart_toStartOf="@+id/cadastrarBtn"
+        app:layout_constraintTop_toBottomOf="@+id/cadastrarBtn"
+        android:indeterminate="true"
+        android:indeterminateTintMode="src_atop"
+        android:indeterminateTint="@color/white"/>
+
+    <TextView
+        android:id="@+id/dispMoveisJeanPaul"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:fontFamily="@font/alata"
+        android:text="Computação para Dispositivos Móveis - Prof. Jean Paul (Uniritter)"
+        android:textColor="@color/white"
+        android:textSize="9sp"
+        app:layout_constraintBottom_toBottomOf="@+id/ritterLogo"
+        app:layout_constraintStart_toEndOf="@+id/ritterLogo" />
+
+    <TextView
+        android:id="@+id/creditoFooter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:fontFamily="@font/alata"
+        android:text="Criado por Douglas Otto D'Avila - Abr/2023"
+        android:textColor="@color/white"
+        android:textSize="9sp"
+        app:layout_constraintStart_toEndOf="@+id/ritterLogo"
+        app:layout_constraintTop_toTopOf="@+id/ritterLogo" />
+
+    <ImageView
+        android:id="@+id/theMovieDbLogo"
+        android:layout_width="83dp"
+        android:layout_height="26dp"
+        android:layout_marginBottom="4dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/tmdb" />
+
+    <ImageView
+        android:id="@+id/ritterLogo"
+        android:layout_width="26dp"
+        android:layout_height="27dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginBottom="5dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/uniritter" />
+
+    <TextView
+        android:id="@+id/cadastroText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/alata"
+        android:text="Cadastro de Usuário"
+        android:textColor="@color/white"
+        android:textSize="25dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.343" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="229dp"
+        android:layout_height="197dp"
+        app:layout_constraintBottom_toTopOf="@+id/cadastroText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/tosemideia" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
