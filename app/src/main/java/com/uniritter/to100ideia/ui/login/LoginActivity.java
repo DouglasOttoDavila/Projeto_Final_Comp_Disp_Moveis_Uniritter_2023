@@ -2,6 +2,7 @@ package com.uniritter.to100ideia.ui.login;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -10,6 +11,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.uniritter.to100ideia.data.network.FirebaseService;
 import com.uniritter.to100ideia.ui.cadastro.CadastroActivity;
 import com.uniritter.to100ideia.ui.listaFilmesPopulares.ListaFilmesActivity;
 import com.uniritter.to100ideia.ui.menu.MenuActivity;
@@ -19,9 +21,8 @@ import com.unirriter.api_filmes.databinding.ActivityMenuBinding;
 
 public class LoginActivity extends AppCompatActivity {
     ActivityLoginBinding binding;
-
-    //Declara o objeto de autenticação do Firebase
     private FirebaseAuth mAuth;
+    private FirebaseService mFirebase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,10 +32,17 @@ public class LoginActivity extends AppCompatActivity {
         View view = binding.getRoot();
         setContentView(view);
 
+        SharedPreferences sharedPreferences = getSharedPreferences("UserSession", Context.MODE_PRIVATE);
+        String email = sharedPreferences.getString("email", "");
+        String senha = sharedPreferences.getString("senha", "");
+        binding.emailField.setText(email);
+        binding.senhaField.setText(senha);
+
+        mAuth = FirebaseAuth.getInstance();
+        mFirebase = new FirebaseService();
+
         inicializar();
 
-        //Inicializa o objeto de autenticação do Firebase
-        mAuth = FirebaseAuth.getInstance();
 
     }
 
@@ -43,40 +51,28 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void inicializar() {
+        validaLoginAtivo();
+
         binding.emailField.requestFocus();
         binding.acessarBtn.setOnClickListener(v -> validaDados());
         binding.esqueciSenhaBtn.setOnClickListener(v -> recuperaSenha());
         binding.cadastraBtn.setOnClickListener(v -> acessaActivity(CadastroActivity.class));
     }
-    private void loginFirebase(String email, String senha) {
-        mAuth.signInWithEmailAndPassword(email, senha)
-                .addOnCompleteListener(this, task -> {
-                    if(task.isSuccessful()) {
-                        Toast.makeText(this, "Logado com sucesso!", Toast.LENGTH_SHORT).show();
-                        finish();
-                        startActivity(new Intent(this, MenuActivity.class));
-                    } else {
-                        Toast.makeText(this, "Usuário ou senha inválidos.", Toast.LENGTH_SHORT).show();
-                    }
-                });
+    private void validaLoginAtivo() {
+        String email = binding.emailField.getText().toString().trim();
+        String senha = binding.senhaField.getText().toString().trim();
+        if (email.isEmpty() || senha.isEmpty()) {
+            // Fields are empty, do nothing and let the user enter the login information
+        } else {
+            // Fields are not empty, attempt to log in with the saved email and password
+            mFirebase.loginFirebase(this, email, senha, mAuth);
+        }
     }
-
-    private void recuperaSenhaFirebase(String email) {
-        mAuth.sendPasswordResetEmail(email)
-                .addOnCompleteListener(this, task -> {
-                    if(task.isSuccessful()) {
-                        Toast.makeText(this, "O link para recuperação de senha foi enviado para o email informado.", Toast.LENGTH_SHORT).show();
-                    } else {
-                        Toast.makeText(this, "Usuário não encontrado.", Toast.LENGTH_SHORT).show();
-                    }
-                });
-    }
-
     private void recuperaSenha() {
         String email = binding.emailField.getText().toString().trim();
 
         if(!email.isEmpty()) {
-            recuperaSenhaFirebase(email);
+            mFirebase.recuperaSenhaFirebase(this, email, mAuth);
         } else {
             Toast.makeText(this, "Informe seu email para recuperação.", Toast.LENGTH_SHORT).show();
         }
@@ -87,7 +83,7 @@ public class LoginActivity extends AppCompatActivity {
 
         if(!email.isEmpty()) {
             if(!senha.isEmpty()) {
-                loginFirebase(email, senha);
+                mFirebase.loginFirebase(this, email, senha, mAuth);
             } else {
                 Toast.makeText(this, "Informe sua senha.", Toast.LENGTH_SHORT).show();
             }
