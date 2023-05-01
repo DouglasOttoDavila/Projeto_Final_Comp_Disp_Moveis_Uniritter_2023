@@ -7,17 +7,11 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.Toast;
-
 import com.google.firebase.auth.FirebaseAuth;
 import com.uniritter.to100ideia.data.network.FirebaseService;
 import com.uniritter.to100ideia.ui.cadastro.CadastroActivity;
-import com.uniritter.to100ideia.ui.listaFilmesPopulares.ListaFilmesActivity;
-import com.uniritter.to100ideia.ui.menu.MenuActivity;
-import com.unirriter.api_filmes.R;
 import com.unirriter.api_filmes.databinding.ActivityLoginBinding;
-import com.unirriter.api_filmes.databinding.ActivityMenuBinding;
 
 public class LoginActivity extends AppCompatActivity {
     ActivityLoginBinding binding;

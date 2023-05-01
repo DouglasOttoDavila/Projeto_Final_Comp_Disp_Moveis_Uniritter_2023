@@ -4,16 +4,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.uniritter.to100ideia.data.model.Filme;
 import com.uniritter.to100ideia.ui.detalhesfilme.DetalhesFilmeActivity;
-import com.unirriter.api_filmes.R;
 import com.unirriter.api_filmes.databinding.ActivityListaFilmesBinding;
-import com.unirriter.api_filmes.databinding.ActivityMenuBinding;
 
 import java.util.List;
 

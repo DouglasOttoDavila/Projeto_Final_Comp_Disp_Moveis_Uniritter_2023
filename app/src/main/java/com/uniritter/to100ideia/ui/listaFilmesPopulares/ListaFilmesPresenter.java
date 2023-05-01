@@ -4,9 +4,7 @@ import com.uniritter.to100ideia.data.mapper.FilmeMapper;
 import com.uniritter.to100ideia.data.model.Filme;
 import com.uniritter.to100ideia.data.network.ApiService;
 import com.uniritter.to100ideia.data.network.response.FilmesResult;
-
 import java.util.List;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

@@ -1,7 +1,6 @@
 package com.uniritter.to100ideia.data.network.response;
 
 import com.squareup.moshi.Json;
-
 import java.util.List;
 
 public class FilmesResult {

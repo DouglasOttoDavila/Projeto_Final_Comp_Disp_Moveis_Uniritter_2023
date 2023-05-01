@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.widget.Toast;
-
 import com.google.firebase.auth.FirebaseAuth;
 import com.uniritter.to100ideia.ui.menu.MenuActivity;
 

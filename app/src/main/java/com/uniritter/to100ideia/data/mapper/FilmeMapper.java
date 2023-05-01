@@ -2,7 +2,6 @@ package com.uniritter.to100ideia.data.mapper;
 
 import com.uniritter.to100ideia.data.model.Filme;
 import com.uniritter.to100ideia.data.network.response.FilmeResponse;
-
 import java.util.ArrayList;
 import java.util.List;
 

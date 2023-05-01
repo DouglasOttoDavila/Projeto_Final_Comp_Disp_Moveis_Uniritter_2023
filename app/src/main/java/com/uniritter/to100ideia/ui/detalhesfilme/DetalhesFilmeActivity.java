@@ -3,9 +3,7 @@ package com.uniritter.to100ideia.ui.detalhesfilme;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.squareup.picasso.Picasso;
 import com.uniritter.to100ideia.data.model.Filme;
 import com.unirriter.api_filmes.R;

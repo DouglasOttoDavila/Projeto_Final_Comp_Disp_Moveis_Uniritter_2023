@@ -1,18 +1,13 @@
 package com.uniritter.to100ideia.ui.menu;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
-
 import com.uniritter.to100ideia.ui.listaFilmesPopulares.ListaFilmesActivity;
 import com.uniritter.to100ideia.ui.login.LoginActivity;
-import com.unirriter.api_filmes.R;
-import com.unirriter.api_filmes.databinding.ActivityCadastroBinding;
 import com.unirriter.api_filmes.databinding.ActivityMenuBinding;
 
 public class MenuActivity extends AppCompatActivity {
