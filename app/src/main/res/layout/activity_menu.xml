@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/red_bkg2"
+    android:background="@drawable/red_bkgmenuapp"
     tools:context="com.uniritter.to100ideia.ui.menu.MenuActivity">
 
     <Button
@@ -42,11 +42,22 @@
         app:layout_constraintStart_toStartOf="@+id/filmesRecentesBtn"
         app:layout_constraintTop_toBottomOf="@+id/filmesRecentesBtn" />
 
+    <Button
+        android:id="@+id/sairBtn"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/white"
+        android:textColor="@color/black"
+        android:text="Sair"
+        app:layout_constraintEnd_toEndOf="@+id/emBreveBtn"
+        app:layout_constraintStart_toStartOf="@+id/emBreveBtn"
+        app:layout_constraintTop_toBottomOf="@+id/emBreveBtn" />
+
     <TextView
         android:id="@+id/menuTxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Menu"
+        android:text="Listas de Filmes"
         android:textColor="@color/white"
         android:textSize="25sp"
         android:textStyle="bold"
@@ -93,8 +104,8 @@
         android:id="@+id/ritterLogo"
         android:layout_width="26dp"
         android:layout_height="27dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginBottom="5dp"
+        android:layout_marginStart="7dp"
+        android:layout_marginBottom="7dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/uniritter" />

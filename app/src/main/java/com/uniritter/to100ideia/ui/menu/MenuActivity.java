@@ -2,12 +2,15 @@ package com.uniritter.to100ideia.ui.menu;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
 import com.uniritter.to100ideia.ui.listaFilmesPopulares.ListaFilmesActivity;
+import com.uniritter.to100ideia.ui.login.LoginActivity;
 import com.unirriter.api_filmes.R;
 import com.unirriter.api_filmes.databinding.ActivityCadastroBinding;
 import com.unirriter.api_filmes.databinding.ActivityMenuBinding;
@@ -46,7 +49,28 @@ public class MenuActivity extends AppCompatActivity {
             }
         });
 
+        binding.sairBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Clear the user session data from Shared Preferences
+                SharedPreferences sharedPreferences = getSharedPreferences("UserSession", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.clear();
+                editor.apply();
+
+                // Finish the current activity and start the LoginActivity
+                finish();
+                acessaActivity(LoginActivity.class);
+            }
+        });
+
     }
+
+    @Override
+    public void onBackPressed() {
+        // Do nothing - this will block the "back" button in this activity
+    }
+
     private void acessaActivity(Class<?> activityClass) {
         startActivity(new Intent(this, activityClass));
     }

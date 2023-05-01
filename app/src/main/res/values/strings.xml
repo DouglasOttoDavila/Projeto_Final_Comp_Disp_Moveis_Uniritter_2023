@@ -1,3 +1,14 @@
 <resources>
-    <string name="app_name">Tô100ideia - Dicas de filmes</string>
+    <string name="app_name" translatable="false">Tô100ideia - Dicas de filmes</string>
+    <string name="email">Insira aqui seu email</string>
+    <string name="acessar">Acessar</string>
+    <string name="esqueci_minha_senha">️Esqueci minha senha</string>
+    <string name="novo_usu_rio_clique_aqui">Novo usuário? Clique aqui!</string>
+    <string name="n_s_temos_a_solu_o">Nós temos a SOLUÇÃO!</string>
+    <string name="esque_a_a_indecis_o">Esqueça a indecisão...</string>
+    <string name="e_m_a_i_l">E m a i l</string>
+    <string name="s_e_n_h_a">S e n h a</string>
+    <string name="computa_o_para_dispositivos_m_veis_prof_jean_paul_uniritter">Computação para Dispositivos Móveis - Prof. Jean Paul (Uniritter)</string>
+    <string name="criado_por_douglas_otto_d_avila_abr_2023">Criado por Douglas Otto D\'Avila - Abr/2023</string>
+    <string name="uniritter">Uniritter</string>
 </resources>

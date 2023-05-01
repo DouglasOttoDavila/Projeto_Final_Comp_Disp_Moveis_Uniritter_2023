@@ -9,6 +9,8 @@
 
     <EditText
         android:id="@+id/senhaField"
+        android:autofillHints="password"
+        android:elevation="10dp"
         android:layout_width="300dp"
         android:layout_height="30dp"
         android:background="@drawable/edit_text_rounded_corners_background"
@@ -26,7 +28,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:fontFamily="@font/alata"
-        android:text="E m a i l"
+        android:text="@string/e_m_a_i_l"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/logoLogin"
         app:layout_constraintHorizontal_bias="0.497"
@@ -35,6 +37,9 @@
 
     <EditText
         android:id="@+id/emailField"
+        android:autofillHints="emailAddress"
+        android:contentDescription="@string/email"
+        android:elevation="10dp"
         android:layout_width="300dp"
         android:layout_height="30dp"
         android:background="@drawable/edit_text_rounded_corners_background"
@@ -52,7 +57,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:fontFamily="@font/alata"
-        android:text="S e n h a"
+        android:text="@string/s_e_n_h_a"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/emailField"
         app:layout_constraintStart_toStartOf="@+id/emailField"
@@ -65,8 +70,9 @@
         android:layout_marginTop="20dp"
         android:backgroundTint="#1C1C1C"
         android:fontFamily="@font/alata"
-        android:text="Acessar"
+        android:text="@string/acessar"
         android:textSize="15sp"
+        android:elevation="10dp"
         app:layout_constraintEnd_toEndOf="@+id/senhaField"
         app:layout_constraintStart_toStartOf="@+id/senhaField"
         app:layout_constraintTop_toBottomOf="@+id/senhaField" />
@@ -77,8 +83,8 @@
         android:layout_height="40dp"
         android:backgroundTint="#AA0000"
         android:fontFamily="@font/alata"
-        android:text="️Esqueci minha senha"
-        android:textSize="10sp"
+        android:text="@string/esqueci_minha_senha"
+        android:textSize="12sp"
         app:layout_constraintBottom_toTopOf="@+id/creditoFooter"
         app:layout_constraintEnd_toEndOf="@+id/acessarBtn"
         app:layout_constraintHorizontal_bias="0.0"
@@ -103,11 +109,12 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
         android:fontFamily="@font/alata"
-        android:text="Computação para Dispositivos Móveis - Prof. Jean Paul (Uniritter)"
+        android:text="@string/computa_o_para_dispositivos_m_veis_prof_jean_paul_uniritter"
         android:textColor="@color/white"
         android:textSize="9sp"
         app:layout_constraintBottom_toBottomOf="@+id/ritterLogo"
-        app:layout_constraintStart_toEndOf="@+id/ritterLogo" />
+        app:layout_constraintStart_toEndOf="@+id/ritterLogo"
+        tools:ignore="SmallSp" />
 
     <TextView
         android:id="@+id/creditoFooter"
@@ -115,11 +122,12 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
         android:fontFamily="@font/alata"
-        android:text="Criado por Douglas Otto D'Avila - Abr/2023"
+        android:text="@string/criado_por_douglas_otto_d_avila_abr_2023"
         android:textColor="@color/white"
         android:textSize="9sp"
         app:layout_constraintStart_toEndOf="@+id/ritterLogo"
-        app:layout_constraintTop_toTopOf="@+id/ritterLogo" />
+        app:layout_constraintTop_toTopOf="@+id/ritterLogo"
+        tools:ignore="SmallSp" />
 
     <ImageView
         android:id="@+id/theMovieDbLogo"
@@ -134,11 +142,12 @@
         android:id="@+id/ritterLogo"
         android:layout_width="26dp"
         android:layout_height="27dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginBottom="5dp"
+        android:layout_marginStart="7dp"
+        android:layout_marginBottom="7dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/uniritter" />
+        app:srcCompat="@drawable/uniritter"
+        android:contentDescription="@string/uniritter" />
 
     <TextView
         android:id="@+id/frase1Text"
@@ -146,7 +155,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:fontFamily="@font/alata"
-        android:text="Esqueça a indecisão..."
+        android:text="@string/esque_a_a_indecis_o"
         android:textColor="@color/white"
         android:textStyle="bold|italic"
         app:layout_constraintEnd_toEndOf="@+id/logoLogin"
@@ -159,7 +168,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:fontFamily="@font/alata"
-        android:text="Nós temos a SOLUÇÃO!"
+        android:text="@string/n_s_temos_a_solu_o"
         android:textColor="@color/white"
         android:textStyle="bold|italic"
         app:layout_constraintEnd_toEndOf="@+id/logoLogin"
@@ -172,8 +181,9 @@
         android:layout_height="40dp"
         android:backgroundTint="#AA0000"
         android:fontFamily="@font/alata"
-        android:text="Novo usuário? Clique aqui!"
-        android:textSize="10sp"
+        android:text="@string/novo_usu_rio_clique_aqui"
+        android:textSize="12sp"
+        android:elevation="10dp"
         app:layout_constraintEnd_toEndOf="@+id/esqueciSenhaBtn"
         app:layout_constraintStart_toStartOf="@+id/esqueciSenhaBtn"
         app:layout_constraintTop_toBottomOf="@+id/esqueciSenhaBtn" />
