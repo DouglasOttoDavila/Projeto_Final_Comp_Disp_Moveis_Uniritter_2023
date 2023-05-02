@@ -1,13 +1,15 @@
 package com.uniritter.to100ideia.ui.login;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.firebase.auth.FirebaseAuth;
 import com.uniritter.to100ideia.data.network.FirebaseService;
 import com.uniritter.to100ideia.ui.cadastro.CadastroActivity;
@@ -51,6 +53,11 @@ public class LoginActivity extends AppCompatActivity {
         binding.acessarBtn.setOnClickListener(v -> validaDados());
         binding.esqueciSenhaBtn.setOnClickListener(v -> recuperaSenha());
         binding.cadastraBtn.setOnClickListener(v -> acessaActivity(CadastroActivity.class));
+        binding.theMovieDbLogo.setOnClickListener(v -> {
+            String url = "https://www.themoviedb.org/";
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+            startActivity(intent);
+        });
     }
     private void validaLoginAtivo() {
         String email = binding.emailField.getText().toString().trim();

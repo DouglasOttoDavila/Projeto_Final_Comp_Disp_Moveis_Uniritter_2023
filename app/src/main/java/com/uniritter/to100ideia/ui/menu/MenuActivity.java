@@ -3,6 +3,7 @@ package com.uniritter.to100ideia.ui.menu;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 
@@ -60,6 +61,15 @@ public class MenuActivity extends AppCompatActivity {
                 // Finish the current activity and start the LoginActivity
                 finish();
                 acessaActivity(LoginActivity.class);
+            }
+        });
+
+        binding.theMovieDbLogo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String url = "https://www.themoviedb.org/";
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                startActivity(intent);
             }
         });
 

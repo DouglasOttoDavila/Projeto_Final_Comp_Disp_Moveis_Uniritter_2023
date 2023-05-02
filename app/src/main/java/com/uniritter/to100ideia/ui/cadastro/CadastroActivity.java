@@ -1,10 +1,13 @@
 package com.uniritter.to100ideia.ui.cadastro;
 
-import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.firebase.auth.FirebaseAuth;
 import com.uniritter.to100ideia.ui.login.LoginActivity;
 import com.unirriter.api_filmes.databinding.ActivityCadastroBinding;
@@ -31,6 +34,12 @@ public class CadastroActivity extends AppCompatActivity {
 
         //Recupera os componentes da tela
         binding.cadastrarBtn.setOnClickListener(v -> validaDados());
+
+        binding.theMovieDbLogo.setOnClickListener(v -> {
+            String url = "https://www.themoviedb.org/";
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+            startActivity(intent);
+        });
     }
 
     private void validaDados() {
