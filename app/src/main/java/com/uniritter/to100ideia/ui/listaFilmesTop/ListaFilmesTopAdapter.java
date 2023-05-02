@@ -1,4 +1,4 @@
-package com.uniritter.to100ideia.ui.listaFilmesRecentes;
+package com.uniritter.to100ideia.ui.listaFilmesTop;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;

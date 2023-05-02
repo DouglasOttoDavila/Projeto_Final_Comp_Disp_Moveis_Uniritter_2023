@@ -21,7 +21,7 @@ public class ListaFilmesEmBrevePresenter implements ListaFilmesEmBreveContrato.L
         @Override
         public void obtemFilmesEmBreve() {
                 ApiService.getInstance()
-                        .obterFilmesEmBreve("461b2ec0f0dc520e20da940100aefc68", "pt-BR")
+                        .obterFilmesEmBreve(ApiService.apiKeyConfig(), ApiService.apiLanguageConfig())
                         .enqueue(new Callback<FilmesResult>() {
                                 @Override
                                 public void onResponse(Call<FilmesResult> call, Response<FilmesResult> response) {

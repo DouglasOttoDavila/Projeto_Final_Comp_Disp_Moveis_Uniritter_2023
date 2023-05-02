@@ -10,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.uniritter.to100ideia.ui.listaFilmesEmBreve.ListaFilmesEmBreveActivity;
 import com.uniritter.to100ideia.ui.listaFilmesPopulares.ListaFilmesActivity;
-import com.uniritter.to100ideia.ui.listaFilmesRecentes.ListaFilmesTopActivity;
+import com.uniritter.to100ideia.ui.listaFilmesTop.ListaFilmesTopActivity;
 import com.uniritter.to100ideia.ui.login.LoginActivity;
 import com.unirriter.api_filmes.databinding.ActivityMenuBinding;
 

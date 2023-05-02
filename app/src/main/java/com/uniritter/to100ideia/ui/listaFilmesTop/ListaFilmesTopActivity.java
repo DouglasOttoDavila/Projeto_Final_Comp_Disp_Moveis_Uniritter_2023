@@ -1,4 +1,4 @@
-package com.uniritter.to100ideia.ui.listaFilmesRecentes;
+package com.uniritter.to100ideia.ui.listaFilmesTop;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -36,7 +36,7 @@ public class ListaFilmesTopActivity
         configuraAdapter();
 
         presenter = new ListaFilmesTopPresenter(this);
-        presenter.obtemFilmesRecentes();
+        presenter.obtemFilmesTop();
 
     }
 

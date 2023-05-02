@@ -1,4 +1,4 @@
-package com.uniritter.to100ideia.ui.listaFilmesRecentes;
+package com.uniritter.to100ideia.ui.listaFilmesTop;
 
 import com.uniritter.to100ideia.data.model.Filme;
 
@@ -16,7 +16,7 @@ public interface ListaFilmesTopContrato {
 
     interface ListaFilmesRecentesPresenter {
 
-        void obtemFilmesRecentes();
+        void obtemFilmesTop();
 
         void destruirView();
     }
