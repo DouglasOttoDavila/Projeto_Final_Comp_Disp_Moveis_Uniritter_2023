@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Tô100ideia - Dicas de filmes</string>
+    <string name="app_name">Tô100ideia</string>
     <string name="email">Insira aqui seu email</string>
     <string name="acessar">Acessar</string>
     <string name="esqueci_minha_senha">️Esqueci minha senha</string>
@@ -13,7 +13,7 @@
     <string name="uniritter" translatable="false">Uniritter</string>
     <string name="avalia_es">Mais Avaliações</string>
     <string name="mais_populares">Mais Populares</string>
-    <string name="lan_amentos_em_breve">Lançamentos em breve...</string>
+    <string name="lan_amentos_em_breve">Lançamentos Recentes</string>
     <string name="language">pt-BR</string>
     <string name="listas_de_filmes">Listas de Filmes</string>
     <string name="sair">Sair</string>
