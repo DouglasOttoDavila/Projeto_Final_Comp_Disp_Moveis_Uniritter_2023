@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.emoji2.text.EmojiCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.uniritter.to100ideia.data.model.Filme;
@@ -29,7 +30,7 @@ public class ListaFilmesPopularesActivity
         binding = ActivityListaFilmesPopularesBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
-
+        setTitulo();
         configuraAdapter();
 
         presenter = new ListaFilmePopularesPresenter(this);
@@ -54,6 +55,10 @@ public class ListaFilmesPopularesActivity
     @Override
     public void mostraErro() {
         Toast.makeText(this,"Erro ao obter filmes!", Toast.LENGTH_LONG).show();
+    }
+
+    public void setTitulo () {
+        binding.popularesTxt.setText(EmojiCompat.get().process("\ud83d\udd25")+" Mais Populares");
     }
 
     @Override

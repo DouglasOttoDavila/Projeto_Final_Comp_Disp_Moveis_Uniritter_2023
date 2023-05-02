@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.emoji2.text.EmojiCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -32,7 +33,7 @@ public class ListaFilmesTopActivity
         binding = ActivityListaFilmesTopBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
-
+        setTitulo();
         configuraAdapter();
 
         presenter = new ListaFilmesTopPresenter(this);
@@ -57,6 +58,10 @@ public class ListaFilmesTopActivity
     @Override
     public void mostraErro() {
         Toast.makeText(this,"Erro ao obter filmes!", Toast.LENGTH_LONG).show();
+    }
+
+    public void setTitulo () {
+        binding.topTxt.setText(EmojiCompat.get().process("\u2b50")+" Melhores Avaliações");
     }
 
     @Override

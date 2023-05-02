@@ -1,6 +1,10 @@
 package com.uniritter.to100ideia.data.network.response;
 
+import androidx.emoji2.text.EmojiCompat;
+
 import com.squareup.moshi.Json;
+
+import java.util.Objects;
 
 //CLASSE QUE MAPEIA O RESPONSE DA API
 public class FilmeResponse {
@@ -28,5 +32,11 @@ public class FilmeResponse {
         return titulo;
     }
 
-    public String getDescricaoFilme() { return descricaoFilme; }
+    public String getDescricaoFilme() {
+        if (Objects.equals(descricaoFilme, "")) {
+
+            return "Ops!" + EmojiCompat.get().process("\ud83d\ude05") +"\nAinda não temos a descrição para este filme.";
+        }
+        return descricaoFilme;
+    }
 }
