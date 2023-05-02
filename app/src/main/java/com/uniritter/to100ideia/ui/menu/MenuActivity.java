@@ -1,12 +1,16 @@
 package com.uniritter.to100ideia.ui.menu;
 
-import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.uniritter.to100ideia.ui.listaFilmesEmBreve.ListaFilmesEmBreveActivity;
 import com.uniritter.to100ideia.ui.listaFilmesPopulares.ListaFilmesActivity;
+import com.uniritter.to100ideia.ui.listaFilmesRecentes.ListaFilmesTopActivity;
 import com.uniritter.to100ideia.ui.login.LoginActivity;
 import com.unirriter.api_filmes.databinding.ActivityMenuBinding;
 
@@ -30,17 +34,17 @@ public class MenuActivity extends AppCompatActivity {
             }
         });
 
-        binding.filmesRecentesBtn.setOnClickListener(new View.OnClickListener() {
+        binding.filmesTopBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                acessaActivity(ListaFilmesActivity.class);
+                acessaActivity(ListaFilmesTopActivity.class);
             }
         });
 
-        binding.emBreveBtn.setOnClickListener(new View.OnClickListener() {
+        binding.filmesEmBreveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                acessaActivity(ListaFilmesActivity.class);
+                acessaActivity(ListaFilmesEmBreveActivity.class);
             }
         });
 

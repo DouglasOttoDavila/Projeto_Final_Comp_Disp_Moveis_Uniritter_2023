@@ -15,7 +15,7 @@ public interface ListaFilmesContrato {
 
     interface ListaFilmesPresenter {
 
-        void obtemFilmes();
+        void obtemFilmesPopulares();
 
         void destruirView();
     }

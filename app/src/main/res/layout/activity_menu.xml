@@ -8,11 +8,11 @@
     tools:context="com.uniritter.to100ideia.ui.menu.MenuActivity">
 
     <Button
-        android:id="@+id/filmesRecentesBtn"
+        android:id="@+id/filmesTopBtn"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/white"
-        android:text="+ Recentes"
+        android:text="@string/avalia_es"
         android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="@+id/filmesPopularesBtn"
         app:layout_constraintHorizontal_bias="0.0"
@@ -25,22 +25,22 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         android:backgroundTint="@color/white"
-        android:text="+ Populares"
+        android:text="@string/mais_populares"
         android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="@+id/menuTxt"
         app:layout_constraintStart_toStartOf="@+id/menuTxt"
         app:layout_constraintTop_toBottomOf="@+id/menuTxt" />
 
     <Button
-        android:id="@+id/emBreveBtn"
+        android:id="@+id/filmesEmBreveBtn"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/white"
-        android:text="Lançamentos em breve..."
+        android:text="@string/lan_amentos_em_breve"
         android:textColor="@color/black"
-        app:layout_constraintEnd_toEndOf="@+id/filmesRecentesBtn"
-        app:layout_constraintStart_toStartOf="@+id/filmesRecentesBtn"
-        app:layout_constraintTop_toBottomOf="@+id/filmesRecentesBtn" />
+        app:layout_constraintEnd_toEndOf="@+id/filmesTopBtn"
+        app:layout_constraintStart_toStartOf="@+id/filmesTopBtn"
+        app:layout_constraintTop_toBottomOf="@+id/filmesTopBtn" />
 
     <Button
         android:id="@+id/sairBtn"
@@ -48,16 +48,16 @@
         android:layout_height="wrap_content"
         android:backgroundTint="@color/white"
         android:textColor="@color/black"
-        android:text="Sair"
-        app:layout_constraintEnd_toEndOf="@+id/emBreveBtn"
-        app:layout_constraintStart_toStartOf="@+id/emBreveBtn"
-        app:layout_constraintTop_toBottomOf="@+id/emBreveBtn" />
+        android:text="@string/sair"
+        app:layout_constraintEnd_toEndOf="@+id/filmesEmBreveBtn"
+        app:layout_constraintStart_toStartOf="@+id/filmesEmBreveBtn"
+        app:layout_constraintTop_toBottomOf="@+id/filmesEmBreveBtn" />
 
     <TextView
         android:id="@+id/menuTxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Listas de Filmes"
+        android:text="@string/listas_de_filmes"
         android:textColor="@color/white"
         android:textSize="25sp"
         android:textStyle="bold"

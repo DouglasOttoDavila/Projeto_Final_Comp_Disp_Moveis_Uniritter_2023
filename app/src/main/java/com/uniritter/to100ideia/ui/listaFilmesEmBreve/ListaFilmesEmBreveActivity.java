@@ -1,46 +1,48 @@
-package com.uniritter.to100ideia.ui.listaFilmesPopulares;
+package com.uniritter.to100ideia.ui.listaFilmesEmBreve;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.uniritter.to100ideia.data.model.Filme;
 import com.uniritter.to100ideia.ui.detalhesfilme.DetalhesFilmeActivity;
-import com.unirriter.api_filmes.databinding.ActivityListaFilmesBinding;
+import com.unirriter.api_filmes.databinding.ActivityListaFilmesEmBreveBinding;
 
 import java.util.List;
 
-public class ListaFilmesActivity
+public class ListaFilmesEmBreveActivity
         extends AppCompatActivity
-        implements ListaFilmesContrato.ListaFilmesView,
-        ListaFilmesAdapter.ItemFilmeClickListener {
+        implements ListaFilmesEmBreveContrato.ListaFilmesEmBreveView,
+        ListaFilmesEmBreveAdapter.ItemFilmeClickListener {
 
-    ActivityListaFilmesBinding binding;
-    private ListaFilmesAdapter filmesAdapter;
-    private ListaFilmesContrato.ListaFilmesPresenter presenter;
+    ActivityListaFilmesEmBreveBinding binding;
+    private ListaFilmesEmBreveAdapter filmesAdapter;
+    private ListaFilmesEmBreveContrato.ListaFilmesEmBrevePresenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         //Infla o layout da activity através do binding
-        binding = ActivityListaFilmesBinding.inflate(getLayoutInflater());
+        binding = ActivityListaFilmesEmBreveBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
 
         configuraAdapter();
 
-        presenter = new ListaFilmesPresenter(this);
-        presenter.obtemFilmesPopulares();
+        presenter = new ListaFilmesEmBrevePresenter(this);
+        presenter.obtemFilmesEmBreve();
 
     }
 
 
     private void configuraAdapter() {
-        filmesAdapter = new ListaFilmesAdapter(this);
+        filmesAdapter = new ListaFilmesEmBreveAdapter(this);
         int numberOfColumns = 2;
         RecyclerView.LayoutManager gridLayoutManager = new GridLayoutManager(this, numberOfColumns);
         binding.recyclerFilmes.setLayoutManager(gridLayoutManager);

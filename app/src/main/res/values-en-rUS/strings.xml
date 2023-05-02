@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Tô100ideia - Movie Tips</string>
+    <string name="email">Enter your email address</string>
+    <string name="acessar">Enter</string>
+    <string name="esqueci_minha_senha">I forgot my password</string>
+    <string name="novo_usu_rio_clique_aqui">New user? Click here!</string>
+    <string name="n_s_temos_a_solu_o">We have the solution!</string>
+    <string name="esque_a_a_indecis_o">Forget your indecision...</string>
+    <string name="e_m_a_i_l">E m a i l</string>
+    <string name="s_e_n_h_a">P a s s w o r d</string>
+    <string name="computa_o_para_dispositivos_m_veis_prof_jean_paul_uniritter">Mobile Devices Computing - Prof. Jean Paul (Uniritter)</string>
+    <string name="criado_por_douglas_otto_d_avila_abr_2023">Created by Douglas Otto D\'Avila -  Apr/2023</string>
+    <string name="avalia_es">Top Rated</string>
+    <string name="mais_populares">Top Popularity</string>
+    <string name="lan_amentos_em_breve">Upcoming Titles</string>
+    <string name="language">en-US</string>
+    <string name="listas_de_filmes">Movie List</string>
+    <string name="sair">Exit</string>
+</resources>

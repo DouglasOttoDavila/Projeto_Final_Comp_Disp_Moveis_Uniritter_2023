@@ -1,25 +1,27 @@
-package com.uniritter.to100ideia.ui.listaFilmesPopulares;
+package com.uniritter.to100ideia.ui.listaFilmesEmBreve;
 
 import com.uniritter.to100ideia.data.mapper.FilmeMapper;
 import com.uniritter.to100ideia.data.model.Filme;
 import com.uniritter.to100ideia.data.network.ApiService;
 import com.uniritter.to100ideia.data.network.response.FilmesResult;
+
 import java.util.List;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class ListaFilmesPresenter implements ListaFilmesContrato.ListaFilmesPresenter{
+public class ListaFilmesEmBrevePresenter implements ListaFilmesEmBreveContrato.ListaFilmesEmBrevePresenter{
 
-        private ListaFilmesContrato.ListaFilmesView view;
-        public ListaFilmesPresenter(ListaFilmesContrato.ListaFilmesView view) {
+        private ListaFilmesEmBreveContrato.ListaFilmesEmBreveView view;
+        public ListaFilmesEmBrevePresenter(ListaFilmesEmBreveContrato.ListaFilmesEmBreveView view) {
             this.view = view;
         }
 
         @Override
-        public void obtemFilmesPopulares() {
+        public void obtemFilmesEmBreve() {
                 ApiService.getInstance()
-                        .obterFilmesPopulares("461b2ec0f0dc520e20da940100aefc68", "pt-BR")
+                        .obterFilmesEmBreve("461b2ec0f0dc520e20da940100aefc68", "pt-BR")
                         .enqueue(new Callback<FilmesResult>() {
                                 @Override
                                 public void onResponse(Call<FilmesResult> call, Response<FilmesResult> response) {
