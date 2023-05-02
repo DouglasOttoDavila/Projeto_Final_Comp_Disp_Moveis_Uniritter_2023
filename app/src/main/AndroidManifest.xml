@@ -34,7 +34,7 @@
             android:name="com.uniritter.to100ideia.ui.detalhesfilme.DetalhesFilmeActivity"
             android:exported="false" />
         <activity
-            android:name="com.uniritter.to100ideia.ui.listaFilmesPopulares.ListaFilmesActivity"
+            android:name="com.uniritter.to100ideia.ui.listaFilmesPopulares.ListaFilmesPopularesActivity"
             android:exported="false" />
         <activity
             android:name="com.uniritter.to100ideia.ui.listaFilmesTop.ListaFilmesTopActivity"

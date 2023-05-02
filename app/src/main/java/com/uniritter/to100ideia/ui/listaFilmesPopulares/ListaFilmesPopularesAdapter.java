@@ -15,11 +15,11 @@ import com.unirriter.api_filmes.R;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ListaFilmesAdapter extends RecyclerView.Adapter<ListaFilmesAdapter.ListaFilmesViewHolder> {
+public class ListaFilmesPopularesAdapter extends RecyclerView.Adapter<ListaFilmesPopularesAdapter.ListaFilmesViewHolder> {
 
     private List<Filme> filmes;
     private static ItemFilmeClickListener itemFilmeClickListener;
-    public ListaFilmesAdapter (ItemFilmeClickListener itemFilmeClickListener) {
+    public ListaFilmesPopularesAdapter(ItemFilmeClickListener itemFilmeClickListener) {
         this.itemFilmeClickListener = itemFilmeClickListener;
         filmes = new ArrayList<>();
     }

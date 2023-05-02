@@ -9,10 +9,10 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class ListaFilmesPresenter implements ListaFilmesContrato.ListaFilmesPresenter{
+public class ListaFilmePopularesPresenter implements ListaFilmesPopularesContrato.ListaFilmesPresenter{
 
-        private ListaFilmesContrato.ListaFilmesView view;
-        public ListaFilmesPresenter(ListaFilmesContrato.ListaFilmesView view) {
+        private ListaFilmesPopularesContrato.ListaFilmesView view;
+        public ListaFilmePopularesPresenter(ListaFilmesPopularesContrato.ListaFilmesView view) {
             this.view = view;
         }
 

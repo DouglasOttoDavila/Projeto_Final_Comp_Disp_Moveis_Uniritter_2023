@@ -3,8 +3,8 @@ package com.uniritter.to100ideia.ui.listaFilmesPopulares;
 import com.uniritter.to100ideia.data.model.Filme;
 import java.util.List;
 
-// Contrato de interface para a ListaFilmesActivity
-public interface ListaFilmesContrato {
+// Contrato de interface para a ListaFilmesPopularesActivity
+public interface ListaFilmesPopularesContrato {
 
     interface ListaFilmesView {
 

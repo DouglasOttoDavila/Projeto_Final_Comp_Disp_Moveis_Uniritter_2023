@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.uniritter.to100ideia.data.model.Filme;
 import com.uniritter.to100ideia.ui.detalhesfilme.DetalhesFilmeActivity;
-import com.unirriter.api_filmes.databinding.ActivityListaFilmesRecentesBinding;
+import com.unirriter.api_filmes.databinding.ActivityListaFilmesTopBinding;
 
 import java.util.List;
 
@@ -20,7 +20,7 @@ public class ListaFilmesTopActivity
         implements ListaFilmesTopContrato.ListaFilmesRecentesView,
         ListaFilmesTopAdapter.ItemFilmeClickListener {
 
-    ActivityListaFilmesRecentesBinding binding;
+    ActivityListaFilmesTopBinding binding;
     private ListaFilmesTopAdapter filmesAdapter;
     private ListaFilmesTopContrato.ListaFilmesRecentesPresenter presenter;
 
@@ -29,7 +29,7 @@ public class ListaFilmesTopActivity
         super.onCreate(savedInstanceState);
 
         //Infla o layout da activity através do binding
-        binding = ActivityListaFilmesRecentesBinding.inflate(getLayoutInflater());
+        binding = ActivityListaFilmesTopBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
 

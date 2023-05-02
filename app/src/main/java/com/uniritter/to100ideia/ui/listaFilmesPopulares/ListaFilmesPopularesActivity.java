@@ -9,38 +9,37 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.uniritter.to100ideia.data.model.Filme;
 import com.uniritter.to100ideia.ui.detalhesfilme.DetalhesFilmeActivity;
-import com.unirriter.api_filmes.databinding.ActivityListaFilmesBinding;
-
+import com.unirriter.api_filmes.databinding.ActivityListaFilmesPopularesBinding;
 import java.util.List;
 
-public class ListaFilmesActivity
+public class ListaFilmesPopularesActivity
         extends AppCompatActivity
-        implements ListaFilmesContrato.ListaFilmesView,
-        ListaFilmesAdapter.ItemFilmeClickListener {
+        implements ListaFilmesPopularesContrato.ListaFilmesView,
+        ListaFilmesPopularesAdapter.ItemFilmeClickListener {
 
-    ActivityListaFilmesBinding binding;
-    private ListaFilmesAdapter filmesAdapter;
-    private ListaFilmesContrato.ListaFilmesPresenter presenter;
+    ActivityListaFilmesPopularesBinding binding;
+    private ListaFilmesPopularesAdapter filmesAdapter;
+    private ListaFilmesPopularesContrato.ListaFilmesPresenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         //Infla o layout da activity através do binding
-        binding = ActivityListaFilmesBinding.inflate(getLayoutInflater());
+        binding = ActivityListaFilmesPopularesBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
 
         configuraAdapter();
 
-        presenter = new ListaFilmesPresenter(this);
+        presenter = new ListaFilmePopularesPresenter(this);
         presenter.obtemFilmesPopulares();
 
     }
 
 
     private void configuraAdapter() {
-        filmesAdapter = new ListaFilmesAdapter(this);
+        filmesAdapter = new ListaFilmesPopularesAdapter(this);
         int numberOfColumns = 2;
         RecyclerView.LayoutManager gridLayoutManager = new GridLayoutManager(this, numberOfColumns);
         binding.recyclerFilmes.setLayoutManager(gridLayoutManager);

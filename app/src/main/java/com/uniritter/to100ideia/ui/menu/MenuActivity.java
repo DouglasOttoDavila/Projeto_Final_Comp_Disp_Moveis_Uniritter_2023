@@ -9,7 +9,7 @@ import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.uniritter.to100ideia.ui.listaFilmesEmBreve.ListaFilmesEmBreveActivity;
-import com.uniritter.to100ideia.ui.listaFilmesPopulares.ListaFilmesActivity;
+import com.uniritter.to100ideia.ui.listaFilmesPopulares.ListaFilmesPopularesActivity;
 import com.uniritter.to100ideia.ui.listaFilmesTop.ListaFilmesTopActivity;
 import com.uniritter.to100ideia.ui.login.LoginActivity;
 import com.unirriter.api_filmes.databinding.ActivityMenuBinding;
@@ -30,7 +30,7 @@ public class MenuActivity extends AppCompatActivity {
         binding.filmesPopularesBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                acessaActivity(ListaFilmesActivity.class);
+                acessaActivity(ListaFilmesPopularesActivity.class);
             }
         });
 
