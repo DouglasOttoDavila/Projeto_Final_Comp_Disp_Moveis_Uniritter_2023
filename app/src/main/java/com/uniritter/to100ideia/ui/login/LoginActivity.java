@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.uniritter.to100ideia.data.network.FirebaseService;
 import com.uniritter.to100ideia.ui.cadastro.CadastroActivity;
+import com.uniritter.to100ideia.ui.menu.MenuActivity;
 import com.unirriter.api_filmes.databinding.ActivityLoginBinding;
 
 public class LoginActivity extends AppCompatActivity {
@@ -62,12 +63,22 @@ public class LoginActivity extends AppCompatActivity {
     private void validaLoginAtivo() {
         String email = binding.emailField.getText().toString().trim();
         String senha = binding.senhaField.getText().toString().trim();
-        if (email.isEmpty() || senha.isEmpty()) {
+
+        SharedPreferences sharedPreferences = getSharedPreferences("UserSession", Context.MODE_PRIVATE);
+        boolean logado = sharedPreferences.getBoolean("logado", false);
+
+        if(logado) {
+            Toast.makeText(this, "Bem-vindo(a) de volta!", Toast.LENGTH_SHORT).show();
+            finish();
+            startActivity(new Intent(this, MenuActivity.class));
+        } else if (email.isEmpty() || senha.isEmpty()) {
             // Fields are empty, do nothing and let the user enter the login information
         } else {
             // Fields are not empty, attempt to log in with the saved email and password
             mFirebase.loginFirebase(this, email, senha, mAuth);
         }
+
+
     }
     private void recuperaSenha() {
         String email = binding.emailField.getText().toString().trim();
@@ -83,7 +94,8 @@ public class LoginActivity extends AppCompatActivity {
         String senha = binding.senhaField.getText().toString().trim();
 
         if(!email.isEmpty()) {
-            if(!senha.isEmpty()) {
+            //if(!senha.isEmpty()) {
+            if(senha.length() >= 6) {
                 mFirebase.loginFirebase(this, email, senha, mAuth);
             } else {
                 Toast.makeText(this, "Informe sua senha.", Toast.LENGTH_SHORT).show();

@@ -25,6 +25,7 @@ public class FirebaseService {
                         SharedPreferences.Editor editor = sharedPreferences.edit();
                         editor.putString("email", email);
                         editor.putString("senha", senha);
+                        editor.putBoolean("logado", true);
                         editor.apply();
                         Toast.makeText(activity, "Logado com sucesso!", Toast.LENGTH_SHORT).show();
                         activity.finish();

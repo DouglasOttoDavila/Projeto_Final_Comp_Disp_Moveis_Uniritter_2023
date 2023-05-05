@@ -27,9 +27,10 @@
             android:layout_below="@id/image_poster_filme"
             android:layout_centerHorizontal="true"
             android:fontFamily="@font/alata"
-            android:padding="16dp"
+            android:padding="20dp"
             android:textAlignment="center"
-            tools:text="Título do Filme" />
+            tools:text="Título do Filme"
+            android:layout_centerVertical="true"/>
     </RelativeLayout>
 
 

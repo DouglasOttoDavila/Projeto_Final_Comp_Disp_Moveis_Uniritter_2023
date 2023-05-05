@@ -28,51 +28,27 @@ public class MenuActivity extends AppCompatActivity {
         View view = binding.getRoot();
         setContentView(view);
 
-        binding.filmesPopularesBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                acessaActivity(ListaFilmesPopularesActivity.class);
-            }
+        binding.filmesPopularesBtn.setOnClickListener(v -> acessaActivity(ListaFilmesPopularesActivity.class));
+        binding.filmesTopBtn.setOnClickListener(v -> acessaActivity(ListaFilmesTopActivity.class));
+        binding.filmesEmBreveBtn.setOnClickListener(v -> acessaActivity(ListaFilmesEmBreveActivity.class));
+
+        binding.sairBtn.setOnClickListener(v -> {
+            // Clear the user session data from Shared Preferences
+            SharedPreferences sharedPreferences = getSharedPreferences("UserSession", Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.clear();
+            editor.apply();
+
+            // Finish the current activity and start the LoginActivity
+            finish();
+            acessaActivity(LoginActivity.class);
         });
 
-        binding.filmesTopBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                acessaActivity(ListaFilmesTopActivity.class);
-            }
+        binding.theMovieDbLogo.setOnClickListener(v -> {
+            String url = "https://www.themoviedb.org/";
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+            startActivity(intent);
         });
-
-        binding.filmesEmBreveBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                acessaActivity(ListaFilmesEmBreveActivity.class);
-            }
-        });
-
-        binding.sairBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Clear the user session data from Shared Preferences
-                SharedPreferences sharedPreferences = getSharedPreferences("UserSession", Context.MODE_PRIVATE);
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.clear();
-                editor.apply();
-
-                // Finish the current activity and start the LoginActivity
-                finish();
-                acessaActivity(LoginActivity.class);
-            }
-        });
-
-        binding.theMovieDbLogo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String url = "https://www.themoviedb.org/";
-                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-                startActivity(intent);
-            }
-        });
-
     }
 
     @Override
