@@ -29,37 +29,42 @@ public class LoginActivity extends AppCompatActivity {
         View view = binding.getRoot();
         setContentView(view);
 
-        SharedPreferences sharedPreferences = getSharedPreferences("UserSession", Context.MODE_PRIVATE);
+        //Recupera os dados do usuário salvos no SharedPreferences
+        /*SharedPreferences sharedPreferences = getSharedPreferences("UserSession", Context.MODE_PRIVATE);
         String email = sharedPreferences.getString("email", "");
         String senha = sharedPreferences.getString("senha", "");
         binding.emailField.setText(email);
-        binding.senhaField.setText(senha);
+        binding.senhaField.setText(senha);*/
 
+        //Inicializa o Firebase
         mAuth = FirebaseAuth.getInstance();
         mFirebase = new FirebaseService();
 
+        //Inicializa os componentes da activity
         inicializar();
-
-
     }
 
+    //Método para acessar uma nova activity
     private void acessaActivity(Class<?> activityClass) {
         startActivity(new Intent(this, activityClass));
     }
 
+    //Método para inicializar os componentes da activity
     private void inicializar() {
-        validaLoginAtivo();
-
-        binding.emailField.requestFocus();
-        binding.acessarBtn.setOnClickListener(v -> validaDados());
-        binding.esqueciSenhaBtn.setOnClickListener(v -> recuperaSenha());
-        binding.cadastraBtn.setOnClickListener(v -> acessaActivity(CadastroActivity.class));
+        validaLoginAtivo(); //Verifica se o usuário já está logado
+        binding.emailField.requestFocus(); //Coloca o foco no campo de email
+        binding.acessarBtn.setOnClickListener(v -> validaDados()); //Realiza a validação do login e acessa o menu principal
+        binding.esqueciSenhaBtn.setOnClickListener(v -> recuperaSenha()); //Realiza a recuperação de senha
+        binding.cadastraBtn.setOnClickListener(v -> acessaActivity(CadastroActivity.class)); //Acessa a tela de cadastro
+        //Acessa o site do The Movie DB
         binding.theMovieDbLogo.setOnClickListener(v -> {
             String url = "https://www.themoviedb.org/";
             Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
             startActivity(intent);
         });
     }
+
+    //Método para verificar se o usuário já está logado no app e acessar o menu principal
     private void validaLoginAtivo() {
         String email = binding.emailField.getText().toString().trim();
         String senha = binding.senhaField.getText().toString().trim();
@@ -77,9 +82,8 @@ public class LoginActivity extends AppCompatActivity {
             // Fields are not empty, attempt to log in with the saved email and password
             mFirebase.loginFirebase(this, email, senha, mAuth);
         }
-
-
     }
+
     private void recuperaSenha() {
         String email = binding.emailField.getText().toString().trim();
 
