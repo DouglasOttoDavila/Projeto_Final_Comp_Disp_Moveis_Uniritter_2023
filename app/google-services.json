@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "763996987425",
-    "project_id": "to100ideia-app",
-    "storage_bucket": "to100ideia-app.appspot.com"
+    "project_number": "41116797936",
+    "project_id": "projetoapifilmes",
+    "storage_bucket": "projetoapifilmes.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:763996987425:android:ac96de4db409791af88360",
+        "mobilesdk_app_id": "1:41116797936:android:1ff5a2372b04c138fbab35",
         "android_client_info": {
           "package_name": "com.unirriter.api_filmes"
         }
       },
       "oauth_client": [
         {
-          "client_id": "763996987425-kv11iq12i6gk8bcivpfajst1ogtro78m.apps.googleusercontent.com",
+          "client_id": "41116797936-c9uqlmh0som3ite83a9q3e2mk38ce1mg.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAXm2lUA6k8y40rb_N2FmN9wiTRc5RsqtY"
+          "current_key": "AIzaSyD1zpctoCUvEx8hj4mJTCr7lKyeHhYTWVA"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "763996987425-kv11iq12i6gk8bcivpfajst1ogtro78m.apps.googleusercontent.com",
+              "client_id": "41116797936-c9uqlmh0som3ite83a9q3e2mk38ce1mg.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

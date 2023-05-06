@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Toast;
 
@@ -66,9 +68,6 @@ public class LoginActivity extends AppCompatActivity {
 
     //Método para verificar se o usuário já está logado no app e acessar o menu principal
     private void validaLoginAtivo() {
-        String email = binding.emailField.getText().toString().trim();
-        String senha = binding.senhaField.getText().toString().trim();
-
         SharedPreferences sharedPreferences = getSharedPreferences("UserSession", Context.MODE_PRIVATE);
         boolean logado = sharedPreferences.getBoolean("logado", false);
 
@@ -76,36 +75,63 @@ public class LoginActivity extends AppCompatActivity {
             Toast.makeText(this, "Bem-vindo(a) de volta!", Toast.LENGTH_SHORT).show();
             finish();
             startActivity(new Intent(this, MenuActivity.class));
-        } else if (email.isEmpty() || senha.isEmpty()) {
-            // Fields are empty, do nothing and let the user enter the login information
         } else {
-            // Fields are not empty, attempt to log in with the saved email and password
-            mFirebase.loginFirebase(this, email, senha, mAuth);
+            Toast.makeText(this, "Insira seus dados para login.", Toast.LENGTH_SHORT).show();// Fields are empty, do nothing and let the user enter the login information
         }
     }
 
     private void recuperaSenha() {
         String email = binding.emailField.getText().toString().trim();
 
-        if(!email.isEmpty()) {
+        if (email.isEmpty()) {
+            Toast.makeText(this, "Informe seu email já cadastrado.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            Toast.makeText(this, "O endereço de email é inválido.", Toast.LENGTH_SHORT).show();
+            return;
+        } else {
+            mFirebase.recuperaSenhaFirebase(this, email, mAuth);
+        }
+
+        /*if(!email.isEmpty()) {
             mFirebase.recuperaSenhaFirebase(this, email, mAuth);
         } else {
             Toast.makeText(this, "Informe seu email para recuperação.", Toast.LENGTH_SHORT).show();
-        }
+        }*/
     }
     private void validaDados() {
         String email = binding.emailField.getText().toString().trim();
         String senha = binding.senhaField.getText().toString().trim();
 
-        if(!email.isEmpty()) {
-            //if(!senha.isEmpty()) {
-            if(senha.length() >= 6) {
+        if (TextUtils.isEmpty(email) && TextUtils.isEmpty(senha)) {
+            Toast.makeText(this, "Informe seu email e senha.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if (email.isEmpty()) {
+            Toast.makeText(this, "Informe seu email.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            Toast.makeText(this, "O endereço de email é inválido.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if (senha.isEmpty()) {
+            Toast.makeText(this, "Informe sua senha.", Toast.LENGTH_SHORT).show();
+            return;
+        } else {
+            mFirebase.loginFirebase(this, email, senha, mAuth);
+        }
+
+
+        /*if(!email.isEmpty()) {
+            if(!senha.isEmpty()) {
                 mFirebase.loginFirebase(this, email, senha, mAuth);
             } else {
                 Toast.makeText(this, "Informe sua senha.", Toast.LENGTH_SHORT).show();
             }
         } else {
             Toast.makeText(this, "Informe seu email.", Toast.LENGTH_SHORT).show();
-        }
+        }*/
     }
 }

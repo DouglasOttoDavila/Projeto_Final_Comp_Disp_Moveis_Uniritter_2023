@@ -1,15 +1,20 @@
 package com.uniritter.to100ideia.ui.cadastro;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.util.Patterns;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.uniritter.to100ideia.ui.login.LoginActivity;
+import com.unirriter.api_filmes.R;
 import com.unirriter.api_filmes.databinding.ActivityCadastroBinding;
 
 public class CadastroActivity extends AppCompatActivity {
@@ -46,7 +51,40 @@ public class CadastroActivity extends AppCompatActivity {
         String email = binding.emailCadastroField.getText().toString().trim();
         String senha = binding.senhaCadastroField.getText().toString().trim();
 
-        if(!email.isEmpty()) {
+        if (TextUtils.isEmpty(email) && TextUtils.isEmpty(senha)) {
+            Toast.makeText(this, "Informe seu email e uma senha para criação da conta.", Toast.LENGTH_LONG).show();
+            return;
+        }
+        if (email.isEmpty()) {
+            Toast.makeText(this, "Informe um email para criação da conta.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            Toast.makeText(this, "O endereço de email informado é inválido.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if (senha.isEmpty()) {
+            Toast.makeText(this, "Preencha sua senha desejada.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if (senha.length() < 8 || !senha.matches(".*[A-Z].*") || !senha.matches(".*\\d.*") || !senha.matches(".*[!@#$%^&*?].*")) {
+            /*Toast.makeText(this, "A senha deve conter ao menos 8 caracteres" + "\n e incluir ao menos uma letra maiúscula, um número \n" + "e um caracter especial.", Toast.LENGTH_LONG).show();*/
+            Dialog popup = new Dialog(this);
+            popup.setContentView(R.layout.popup);
+
+            TextView tituloPop = popup.findViewById(R.id.popup_titulo);
+            TextView textoPop = popup.findViewById(R.id.popup_texto);
+            tituloPop.setText("Senha Inválida");
+            textoPop.setText("A senha deve conter ao menos 8 caracteres, incluir ao menos uma letra maiúscula, um número e um caractere especial.");
+
+            popup.show();
+            return;
+        }
+        binding.progressBar.setVisibility(View.VISIBLE);
+        criarContaFirebase(email, senha);
+
+
+        /*if(!email.isEmpty()) {
             if(!senha.isEmpty()) {
                 binding.progressBar.setVisibility(View.VISIBLE);
                 criarContaFirebase(email, senha);
@@ -55,7 +93,7 @@ public class CadastroActivity extends AppCompatActivity {
             }
         } else {
             Toast.makeText(this, "Informe seu email.", Toast.LENGTH_SHORT).show();
-        }
+        }*/
     }
 
     private void criarContaFirebase(String email, String senha) {
