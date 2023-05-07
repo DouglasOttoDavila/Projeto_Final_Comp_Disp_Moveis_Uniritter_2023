@@ -23,8 +23,6 @@ public class FirebaseService {
                         // Save the login data in Shared Preferences
                         SharedPreferences sharedPreferences = activity.getSharedPreferences("UserSession", Context.MODE_PRIVATE);
                         SharedPreferences.Editor editor = sharedPreferences.edit();
-                        editor.putString("email", email);
-                        editor.putString("senha", senha);
                         editor.putBoolean("logado", true);
                         editor.apply();
                         Toast.makeText(activity, "Logado com sucesso!", Toast.LENGTH_SHORT).show();
