@@ -1,5 +1,4 @@
 package com.uniritter.to100ideia.ui.login;
-
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -17,11 +16,16 @@ import com.uniritter.to100ideia.data.network.FirebaseService;
 import com.uniritter.to100ideia.ui.cadastro.CadastroActivity;
 import com.uniritter.to100ideia.ui.menu.MenuActivity;
 import com.unirriter.api_filmes.databinding.ActivityLoginBinding;
+public class LoginActivity
+        extends AppCompatActivity
+        implements LoginContrato.LoginView {
 
-public class LoginActivity extends AppCompatActivity {
+    //Cria o binding para a activity
     ActivityLoginBinding binding;
-    private FirebaseAuth mAuth;
-    private FirebaseService mFirebase;
+
+
+    //Declara o presenter da activity
+    private LoginContrato.LoginPresenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,33 +35,39 @@ public class LoginActivity extends AppCompatActivity {
         View view = binding.getRoot();
         setContentView(view);
 
-        //Recupera os dados do usuário salvos no SharedPreferences
-        /*SharedPreferences sharedPreferences = getSharedPreferences("UserSession", Context.MODE_PRIVATE);
-        String email = sharedPreferences.getString("email", "");
-        String senha = sharedPreferences.getString("senha", "");
-        binding.emailField.setText(email);
-        binding.senhaField.setText(senha);*/
+        //Inicializa o presenter da activity
+        presenter = new LoginPresenter(this);
 
-        //Inicializa o Firebase
-        mAuth = FirebaseAuth.getInstance();
-        mFirebase = new FirebaseService();
+        //Verifica se o usuário já está logado através do SharedPreferences
+        SharedPreferences sharedPreferences = getSharedPreferences("UserSession", Context.MODE_PRIVATE);
+        boolean logado = sharedPreferences.getBoolean("logado", false);
+
+        //Inicializa a função de validação de login ativo
+        presenter.validaLoginAtivo(this, logado); //Verifica se o usuário já está logado
 
         //Inicializa os componentes da activity
-        inicializar();
-    }
-
-    //Método para acessar uma nova activity
-    private void acessaActivity(Class<?> activityClass) {
-        startActivity(new Intent(this, activityClass));
-    }
-
-    //Método para inicializar os componentes da activity
-    private void inicializar() {
-        validaLoginAtivo(); //Verifica se o usuário já está logado
         binding.emailField.requestFocus(); //Coloca o foco no campo de email
-        binding.acessarBtn.setOnClickListener(v -> validaDados()); //Realiza a validação do login e acessa o menu principal
-        binding.esqueciSenhaBtn.setOnClickListener(v -> recuperaSenha()); //Realiza a recuperação de senha
-        binding.cadastraBtn.setOnClickListener(v -> acessaActivity(CadastroActivity.class)); //Acessa a tela de cadastro
+
+        //Realiza a validação do login e acessa o menu principal
+        binding.acessarBtn.setOnClickListener(v -> {
+            //Inicializa e atribui variáveis para usuário e senha
+            String email = binding.emailField.getText().toString().trim();
+            String senha = binding.senhaField.getText().toString().trim();
+            presenter.validaDados(this, email, senha);
+        });
+
+        //Realiza a recuperação de senha
+        binding.esqueciSenhaBtn.setOnClickListener(v -> {
+            //Inicializa e atribui variáveis para usuário e senha
+            String email = binding.emailField.getText().toString().trim();
+            presenter.recuperaSenha(this, email);
+        });
+
+        //Acessa a tela de cadastro
+        binding.cadastraBtn.setOnClickListener(v -> {
+            acessaActivity(CadastroActivity.class);
+        }); //Acessa a tela de cadastro
+
         //Acessa o site do The Movie DB
         binding.theMovieDbLogo.setOnClickListener(v -> {
             String url = "https://www.themoviedb.org/";
@@ -66,72 +76,13 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    //Método para verificar se o usuário já está logado no app e acessar o menu principal
-    private void validaLoginAtivo() {
-        SharedPreferences sharedPreferences = getSharedPreferences("UserSession", Context.MODE_PRIVATE);
-        boolean logado = sharedPreferences.getBoolean("logado", false);
-
-        if(logado) {
-            Toast.makeText(this, "Bem-vindo(a) de volta!", Toast.LENGTH_SHORT).show();
-            finish();
-            startActivity(new Intent(this, MenuActivity.class));
-        } else {
-            Toast.makeText(this, "Insira seus dados para login.", Toast.LENGTH_SHORT).show();// Fields are empty, do nothing and let the user enter the login information
-        }
+    //Método para acessar uma nova activity
+    private void acessaActivity(Class<?> activityClass) {
+        startActivity(new Intent(this, activityClass));
     }
 
-    private void recuperaSenha() {
-        String email = binding.emailField.getText().toString().trim();
-
-        if (email.isEmpty()) {
-            Toast.makeText(this, "Informe seu email já cadastrado.", Toast.LENGTH_SHORT).show();
-            return;
-        }
-        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            Toast.makeText(this, "O endereço de email é inválido.", Toast.LENGTH_SHORT).show();
-            return;
-        } else {
-            mFirebase.recuperaSenhaFirebase(this, email, mAuth);
-        }
-
-        /*if(!email.isEmpty()) {
-            mFirebase.recuperaSenhaFirebase(this, email, mAuth);
-        } else {
-            Toast.makeText(this, "Informe seu email para recuperação.", Toast.LENGTH_SHORT).show();
-        }*/
-    }
-    private void validaDados() {
-        String email = binding.emailField.getText().toString().trim();
-        String senha = binding.senhaField.getText().toString().trim();
-
-        if (TextUtils.isEmpty(email) && TextUtils.isEmpty(senha)) {
-            Toast.makeText(this, "Informe seu email e senha.", Toast.LENGTH_SHORT).show();
-            return;
-        }
-        if (email.isEmpty()) {
-            Toast.makeText(this, "Informe seu email.", Toast.LENGTH_SHORT).show();
-            return;
-        }
-        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            Toast.makeText(this, "O endereço de email é inválido.", Toast.LENGTH_SHORT).show();
-            return;
-        }
-        if (senha.isEmpty()) {
-            Toast.makeText(this, "Informe sua senha.", Toast.LENGTH_SHORT).show();
-            return;
-        } else {
-            mFirebase.loginFirebase(this, email, senha, mAuth);
-        }
-
-
-        /*if(!email.isEmpty()) {
-            if(!senha.isEmpty()) {
-                mFirebase.loginFirebase(this, email, senha, mAuth);
-            } else {
-                Toast.makeText(this, "Informe sua senha.", Toast.LENGTH_SHORT).show();
-            }
-        } else {
-            Toast.makeText(this, "Informe seu email.", Toast.LENGTH_SHORT).show();
-        }*/
+    @Override
+    public void mostraMsg(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_LONG).show();
     }
 }
