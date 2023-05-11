@@ -30,6 +30,7 @@ public class LoginActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         //Infla o layout da activity através do binding
         binding = ActivityLoginBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
