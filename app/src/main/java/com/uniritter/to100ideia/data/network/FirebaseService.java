@@ -6,15 +6,21 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.widget.Toast;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.uniritter.to100ideia.ui.menu.MenuActivity;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class FirebaseService {
 
+    // FirebaseAuth
     private FirebaseAuth mAuth;
 
     public void Firebase() {
         mAuth = FirebaseAuth.getInstance();
     }
+
 
     public void loginFirebase(Activity activity, String email, String senha, FirebaseAuth firebaseAuth) {
         firebaseAuth.signInWithEmailAndPassword(email, senha)
@@ -24,6 +30,7 @@ public class FirebaseService {
                         SharedPreferences sharedPreferences = activity.getSharedPreferences("UserSession", Context.MODE_PRIVATE);
                         SharedPreferences.Editor editor = sharedPreferences.edit();
                         editor.putBoolean("logado", true);
+                        editor.putString("email", email);
                         editor.apply();
                         Toast.makeText(activity, "Logado com sucesso!", Toast.LENGTH_SHORT).show();
                         activity.finish();

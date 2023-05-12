@@ -28,13 +28,16 @@ public class MenuActivity extends AppCompatActivity {
         View view = binding.getRoot();
         setContentView(view);
 
+        SharedPreferences sharedPreferences = getSharedPreferences("UserSession", Context.MODE_PRIVATE);
+
         binding.filmesPopularesBtn.setOnClickListener(v -> acessaActivity(ListaFilmesPopularesActivity.class));
         binding.filmesTopBtn.setOnClickListener(v -> acessaActivity(ListaFilmesTopActivity.class));
         binding.filmesEmBreveBtn.setOnClickListener(v -> acessaActivity(ListaFilmesEmBreveActivity.class));
 
+        binding.userEmail.setText(sharedPreferences.getString("email", ""));
+
         binding.sairBtn.setOnClickListener(v -> {
             // Clear the user session data from Shared Preferences
-            SharedPreferences sharedPreferences = getSharedPreferences("UserSession", Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = sharedPreferences.edit();
             editor.clear();
             editor.apply();

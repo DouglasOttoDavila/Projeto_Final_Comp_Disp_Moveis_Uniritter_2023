@@ -11,8 +11,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.uniritter.to100ideia.ui.login.LoginActivity;
 import com.unirriter.api_filmes.R;
+
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 public class CadastroPresenter implements CadastroContrato.CadastroPresenter {
 
@@ -20,6 +25,19 @@ public class CadastroPresenter implements CadastroContrato.CadastroPresenter {
 
     public CadastroPresenter(CadastroContrato.CadastroView view) {
         this.view = view;
+    }
+
+    public void cadastroFirestore(String email) {
+        // Firestore
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+        Map<String, Object> usuario = new HashMap<>();
+        usuario.put("email", email);
+        usuario.put("hasFilmesFavoritos", false);
+        usuario.put("filmesFavoritos", Arrays.asList(""));
+
+        db.collection("usuarios")
+                .add(usuario);
     }
 
     public void criarContaFirebase(Activity activity, String email, String senha) {
@@ -43,6 +61,7 @@ public class CadastroPresenter implements CadastroContrato.CadastroPresenter {
                         //Toast.makeText(this, "Erro ao cadastrar usuário.", Toast.LENGTH_SHORT).show();
                     }
                 });
+        cadastroFirestore(email);
     }
 
     public void validaDados(Activity activity, Context context, String email, String senha) {
