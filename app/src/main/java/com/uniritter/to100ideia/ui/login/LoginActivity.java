@@ -23,7 +23,6 @@ public class LoginActivity
     //Cria o binding para a activity
     ActivityLoginBinding binding;
 
-
     //Declara o presenter da activity
     private LoginContrato.LoginPresenter presenter;
 

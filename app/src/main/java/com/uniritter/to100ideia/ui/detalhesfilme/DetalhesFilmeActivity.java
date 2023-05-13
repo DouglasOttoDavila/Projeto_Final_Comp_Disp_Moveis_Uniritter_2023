@@ -85,7 +85,7 @@ public class DetalhesFilmeActivity extends AppCompatActivity {
                             DocumentReference docRef = querySnapshot.getDocuments().get(0).getReference();
 
                             // Update the array field in the document
-                            docRef.update("filmesFavoritos", FieldValue.arrayUnion("", filme.getTitulo()))
+                            docRef.update("filmesFavoritos", FieldValue.arrayUnion( filme.getTitulo()))
                                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                                         @Override
                                         public void onSuccess(Void aVoid) {

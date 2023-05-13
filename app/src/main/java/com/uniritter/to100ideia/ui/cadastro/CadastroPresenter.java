@@ -34,7 +34,7 @@ public class CadastroPresenter implements CadastroContrato.CadastroPresenter {
         Map<String, Object> usuario = new HashMap<>();
         usuario.put("email", email);
         usuario.put("hasFilmesFavoritos", false);
-        usuario.put("filmesFavoritos", Arrays.asList(""));
+        /*usuario.put("filmesFavoritos", Arrays.asList(""));*/
 
         db.collection("usuarios")
                 .add(usuario);
