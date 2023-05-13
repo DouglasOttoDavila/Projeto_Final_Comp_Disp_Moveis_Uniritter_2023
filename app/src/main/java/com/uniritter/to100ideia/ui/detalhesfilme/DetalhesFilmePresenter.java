@@ -72,12 +72,14 @@ public class DetalhesFilmePresenter implements DetalhesFilmeContrato.DetalhesFil
                                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                                         @Override
                                         public void onSuccess(Void aVoid) {
+                                            view.mostraMsg("Filme adicionado aos favoritos!");
                                             Log.d(TAG, "Document updated successfully");
                                         }
                                     })
                                     .addOnFailureListener(new OnFailureListener() {
                                         @Override
                                         public void onFailure(@NonNull Exception e) {
+                                            view.mostraMsg("Erro ao adicionar filme aos favoritos.");
                                             Log.w(TAG, "Error updating document", e);
                                         }
                                     });
