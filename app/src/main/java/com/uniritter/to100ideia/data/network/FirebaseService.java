@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.widget.Toast;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.uniritter.to100ideia.ui.menu.MenuActivity;
 
@@ -26,6 +27,9 @@ public class FirebaseService {
         firebaseAuth.signInWithEmailAndPassword(email, senha)
                 .addOnCompleteListener(task -> {
                     if(task.isSuccessful()) {
+                        /*// User signed in successfully
+                        FirebaseUser user = mAuth.getCurrentUser();*/
+
                         // Save the login data in Shared Preferences
                         SharedPreferences sharedPreferences = activity.getSharedPreferences("UserSession", Context.MODE_PRIVATE);
                         SharedPreferences.Editor editor = sharedPreferences.edit();

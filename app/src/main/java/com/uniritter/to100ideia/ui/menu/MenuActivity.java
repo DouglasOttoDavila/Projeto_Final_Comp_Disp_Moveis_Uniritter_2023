@@ -9,6 +9,7 @@ import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.uniritter.to100ideia.ui.listaFilmesEmBreve.ListaFilmesEmBreveActivity;
 import com.uniritter.to100ideia.ui.listaFilmesPopulares.ListaFilmesPopularesActivity;
 import com.uniritter.to100ideia.ui.listaFilmesTop.ListaFilmesTopActivity;
@@ -41,6 +42,9 @@ public class MenuActivity extends AppCompatActivity {
             SharedPreferences.Editor editor = sharedPreferences.edit();
             editor.clear();
             editor.apply();
+
+            FirebaseAuth mAuth = FirebaseAuth.getInstance();
+            mAuth.signOut();
 
             // Finish the current activity and start the LoginActivity
             finish();

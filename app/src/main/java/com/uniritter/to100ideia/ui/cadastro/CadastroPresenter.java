@@ -1,16 +1,20 @@
 package com.uniritter.to100ideia.ui.cadastro;
 
+import static android.content.ContentValues.TAG;
+
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.text.TextUtils;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.uniritter.to100ideia.ui.login.LoginActivity;
 import com.unirriter.api_filmes.R;
@@ -27,7 +31,8 @@ public class CadastroPresenter implements CadastroContrato.CadastroPresenter {
         this.view = view;
     }
 
-    public void cadastroFirestore(String email) {
+    public void cadastroFirestore(String email, String uid) {
+
         // Firestore
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
@@ -36,8 +41,8 @@ public class CadastroPresenter implements CadastroContrato.CadastroPresenter {
         usuario.put("hasFilmesFavoritos", false);
         /*usuario.put("filmesFavoritos", Arrays.asList(""));*/
 
-        db.collection("usuarios")
-                .add(usuario);
+        db.collection("usuarios").document(uid).set(usuario);
+                /*.add(usuario);*/
     }
 
     public void criarContaFirebase(Activity activity, String email, String senha) {
@@ -51,7 +56,13 @@ public class CadastroPresenter implements CadastroContrato.CadastroPresenter {
                 .addOnCompleteListener(activity, task -> {
                     if(task.isSuccessful()) {
                         view.mostraMsg("Usuário cadastrado com sucesso!");
+                        // User was created successfully, get the new user's UID
+                        FirebaseUser user = mAuth.getCurrentUser();
+                        String uid = user.getUid();
+                        Log.d(TAG, "User added with ID: " + uid);
+                        cadastroFirestore(email, uid);
                         //Toast.makeText(this, "Usuário cadastrado com sucesso!", Toast.LENGTH_SHORT).show();
+
                         activity.finish();
                         activity.startActivity(new Intent(activity, LoginActivity.class));
                     } else {
@@ -61,7 +72,6 @@ public class CadastroPresenter implements CadastroContrato.CadastroPresenter {
                         //Toast.makeText(this, "Erro ao cadastrar usuário.", Toast.LENGTH_SHORT).show();
                     }
                 });
-        cadastroFirestore(email);
     }
 
     public void validaDados(Activity activity, Context context, String email, String senha) {

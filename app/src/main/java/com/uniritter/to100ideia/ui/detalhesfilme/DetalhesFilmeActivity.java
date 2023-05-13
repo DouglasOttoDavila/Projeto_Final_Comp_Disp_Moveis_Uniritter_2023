@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -85,7 +86,7 @@ public class DetalhesFilmeActivity extends AppCompatActivity {
                             DocumentReference docRef = querySnapshot.getDocuments().get(0).getReference();
 
                             // Update the array field in the document
-                            docRef.update("filmesFavoritos", FieldValue.arrayUnion( filme.getTitulo()))
+                            docRef.update("filmesFavoritos", FieldValue.arrayUnion(filme.getTitulo()))
                                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                                         @Override
                                         public void onSuccess(Void aVoid) {
