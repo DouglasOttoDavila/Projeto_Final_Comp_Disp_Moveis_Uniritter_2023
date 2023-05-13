@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/red_bkg2blur"
+    android:background="@drawable/red_bkg"
     tools:context="com.uniritter.to100ideia.ui.listaFilmesPopulares.ListaFilmesPopularesActivity">
 
     <androidx.recyclerview.widget.RecyclerView
@@ -27,7 +27,7 @@
         android:layout_marginTop="10dp"
         android:fontFamily="@font/alata"
         android:text="Mais Populares"
-        android:textColor="@android:color/holo_red_dark"
+        android:textColor="@color/white"
         android:textSize="25dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/detalhesPopularesTxt"
