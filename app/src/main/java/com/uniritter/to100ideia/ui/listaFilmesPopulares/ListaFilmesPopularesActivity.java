@@ -58,7 +58,7 @@ public class ListaFilmesPopularesActivity
     }
 
     public void setTitulo () {
-        binding.popularesTxt.setText(EmojiCompat.get().process("\ud83d\udd25")+" Mais Populares");
+        binding.popularesTxt.setText("Filmes Populares");
     }
 
     @Override

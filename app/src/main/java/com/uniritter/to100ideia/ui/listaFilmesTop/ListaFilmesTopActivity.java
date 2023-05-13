@@ -61,7 +61,7 @@ public class ListaFilmesTopActivity
     }
 
     public void setTitulo () {
-        binding.topTxt.setText(EmojiCompat.get().process("\u2b50")+" Melhores Avaliações");
+        binding.topTxt.setText("Melhores Avaliações");
     }
 
     @Override

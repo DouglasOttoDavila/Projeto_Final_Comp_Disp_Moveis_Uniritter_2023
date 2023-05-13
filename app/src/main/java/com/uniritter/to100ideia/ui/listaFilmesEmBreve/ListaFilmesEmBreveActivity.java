@@ -61,7 +61,7 @@ public class ListaFilmesEmBreveActivity
     }
 
     public void setTitulo () {
-        binding.lancamentosRecentesTxt.setText(EmojiCompat.get().process("\ud83c\udfac")+" Lançamentos Recentes");
+        binding.lancamentosRecentesTxt.setText("Lançamentos Recentes");
     }
 
     @Override
