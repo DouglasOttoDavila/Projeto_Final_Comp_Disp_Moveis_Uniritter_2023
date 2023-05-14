@@ -14,6 +14,8 @@ public interface DetalhesFilmeContrato {
         void setBtn(String emojiCode, String text);
         void mostraMsg(String msg);
         void mostraFav(boolean fav);
+        void recarregaActivity();
+        void atualizaFavBtn(boolean fav);
 
     }
 

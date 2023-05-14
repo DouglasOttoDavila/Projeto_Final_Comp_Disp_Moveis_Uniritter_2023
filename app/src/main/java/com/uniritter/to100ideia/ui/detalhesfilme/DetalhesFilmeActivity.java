@@ -76,5 +76,22 @@ public class DetalhesFilmeActivity
         }
     }
 
+    @Override
+    public void recarregaActivity() {
+        Intent intent = getIntent();
+        finish();
+        startActivity(intent);
+    }
+
+    @Override
+    public void atualizaFavBtn(boolean fav) {
+        if (fav) {
+            binding.addFavoritos.setText(EmojiCompat.get().process("\u2b50") + "Remover dos favoritos");
+        }
+        else {
+            binding.addFavoritos.setText(EmojiCompat.get().process("\u2b50") + "Adicionar aos favoritos");
+        }
+    }
+
 
 }

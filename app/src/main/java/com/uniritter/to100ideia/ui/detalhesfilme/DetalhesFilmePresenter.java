@@ -55,7 +55,8 @@ public class DetalhesFilmePresenter implements DetalhesFilmeContrato.DetalhesFil
                 .load("https://image.tmdb.org/t/p/"+ resolucao + "/" + filme.getCaminhoPoster())
                 .into(imagePoster); //binding.imagePosterFilme
 
-        view.setBtn("\u2b50", " Adicionar aos favoritos");
+        /*view.setBtn("\u2b50", " Adicionar aos favoritos");*/
+
 
         checkFilmeFavorito(filme.getTitulo(),estrelaFav);
 
@@ -81,11 +82,13 @@ public class DetalhesFilmePresenter implements DetalhesFilmeContrato.DetalhesFil
                         // set the star image view to the filled star icon to indicate that the movie is a favorite
                         Log.d(TAG, "FILME É FAVORITO: " + titulo);
                         view.mostraFav(true);
+                        view.atualizaFavBtn(true);
                     } else {
                         // If the given movie title does not exist in the user's favorite movies array,
                         // set the star image view to the empty star icon to indicate that the movie is not a favorite
                         Log.d(TAG, "FILME NÃO É FAVORITO");
                         view.mostraFav(false);
+                        view.atualizaFavBtn(false);
                     }
                 }
             }).addOnFailureListener(e -> {
@@ -122,6 +125,8 @@ public class DetalhesFilmePresenter implements DetalhesFilmeContrato.DetalhesFil
                                         public void onSuccess(Void aVoid) {
                                             view.mostraMsg("Filme adicionado aos favoritos!");
                                             Log.d(TAG, "Document updated successfully");
+                                            view.atualizaFavBtn(true);
+                                            view.recarregaActivity();
                                         }
                                     })
                                     .addOnFailureListener(new OnFailureListener() {
@@ -129,6 +134,8 @@ public class DetalhesFilmePresenter implements DetalhesFilmeContrato.DetalhesFil
                                         public void onFailure(@NonNull Exception e) {
                                             view.mostraMsg("Erro ao adicionar filme aos favoritos.");
                                             Log.w(TAG, "Error updating document", e);
+                                            view.atualizaFavBtn(false);
+                                            view.recarregaActivity();
                                         }
                                     });
                             docRef.update("hasFilmesFavoritos", true);
@@ -145,5 +152,4 @@ public class DetalhesFilmePresenter implements DetalhesFilmeContrato.DetalhesFil
 
         });
     }
-
 }
