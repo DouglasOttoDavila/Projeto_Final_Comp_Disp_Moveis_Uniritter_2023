@@ -13,10 +13,12 @@ public interface DetalhesFilmeContrato {
         void mostrarDetalhes(Filme filme);
         void setBtn(String emojiCode, String text);
         void mostraMsg(String msg);
+        void mostraFav(boolean fav);
 
     }
 
     interface DetalhesFilmePresenter {
+        void checkFilmeFavorito(String titulo, ImageView estrela);
         void addFilmeAosFavoritos(Context context, Button botao, Filme filme);
         void carregarDetalhes(Intent intent, String extra, String resolucao, ImageView imagePoster);
     }

@@ -16,7 +16,7 @@ public class DetalhesFilmeActivity
         extends AppCompatActivity
         implements DetalhesFilmeContrato.DetalhesFilmeView {
 
-    public static final String EXTRA_FILME = "EXTRA FILME";
+    public static final String EXTRA_FILME = "EXTRA FILME"; //Chave para o objeto filme passado para a activity; usado para recuperar o objeto na activity
 
     //Cria o binding para a activity
     ActivityDetalhesFilmeBinding binding;
@@ -57,7 +57,15 @@ public class DetalhesFilmeActivity
         Toast.makeText(this, msg, Toast.LENGTH_LONG).show();
     }
 
-
+    @Override
+    public void mostraFav(boolean fav) {
+        if (!fav) {
+            binding.estrelaDetalhe.setVisibility(View.INVISIBLE);
+        }
+        else {
+            binding.estrelaDetalhe.setVisibility(View.VISIBLE);
+        }
+    }
 
 
 }

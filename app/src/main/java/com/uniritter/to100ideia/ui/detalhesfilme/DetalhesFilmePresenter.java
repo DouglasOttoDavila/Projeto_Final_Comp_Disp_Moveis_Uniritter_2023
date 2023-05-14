@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
@@ -13,6 +14,8 @@ import androidx.annotation.NonNull;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FieldValue;
@@ -21,11 +24,15 @@ import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.squareup.picasso.Picasso;
 import com.uniritter.to100ideia.data.model.Filme;
+import com.unirriter.api_filmes.R;
 import com.unirriter.api_filmes.databinding.ActivityDetalhesFilmeBinding;
+
+import java.util.List;
 
 public class DetalhesFilmePresenter implements DetalhesFilmeContrato.DetalhesFilmePresenter {
 
     private DetalhesFilmeContrato.DetalhesFilmeView view;
+    private ImageView estrelaFav; // Instancia o componente da imagem da estrela de favorito do item da lista
 
     //Cria o binding para a activity
     ActivityDetalhesFilmeBinding binding;
@@ -36,6 +43,10 @@ public class DetalhesFilmePresenter implements DetalhesFilmeContrato.DetalhesFil
         this.view = view;
     }
 
+    /*public DetalhesFilmePresenter (View view) {
+        estrelaFav = view.findViewById(R.id.estrelaDetalhe); // Atribui o componente da imagem da estrela de favorito do item da lista
+    }*/
+
     public void carregarDetalhes(Intent intent, String extra, String resolucao, ImageView imagePoster) {
         final Filme filme = (Filme) intent.getSerializableExtra(extra);
         view.mostrarDetalhes(filme);
@@ -45,6 +56,43 @@ public class DetalhesFilmePresenter implements DetalhesFilmeContrato.DetalhesFil
                 .into(imagePoster); //binding.imagePosterFilme
 
         view.setBtn("\u2b50", " Adicionar aos favoritos");
+
+        checkFilmeFavorito(filme.getTitulo(),estrelaFav);
+
+    }
+
+    public void checkFilmeFavorito(String titulo, ImageView estrela) { // Método que verifica se o filme é favorito e atribui a imagem da estrela de favorito ao componente de imagem do item da lista
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+        if (user != null) {
+            // Get the current user's UID
+            String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+            // Get a reference to the Firestore database for the current user
+            FirebaseFirestore db = FirebaseFirestore.getInstance();
+            DocumentReference docRef = db.collection("usuarios").document(uid);
+
+            // Check if the given movie title exists in the user's favorite movies array
+            docRef.get().addOnSuccessListener(documentSnapshot -> {
+                if (documentSnapshot.exists()) {
+                    List<String> filmesFavoritos = (List<String>) documentSnapshot.get("filmesFavoritos");
+                    if (filmesFavoritos != null && filmesFavoritos.contains(titulo)) {
+                        // If the given movie title exists in the user's favorite movies array,
+                        // set the star image view to the filled star icon to indicate that the movie is a favorite
+                        Log.d(TAG, "FILME É FAVORITO: " + titulo);
+                        view.mostraFav(true);
+                    } else {
+                        // If the given movie title does not exist in the user's favorite movies array,
+                        // set the star image view to the empty star icon to indicate that the movie is not a favorite
+                        Log.d(TAG, "FILME NÃO É FAVORITO");
+                        view.mostraFav(false);
+                    }
+                }
+            }).addOnFailureListener(e -> {
+                // Handle any errors that occur while querying the database
+                Log.e(TAG, "Error querying Firestore", e);
+            });
+        }
 
     }
 
