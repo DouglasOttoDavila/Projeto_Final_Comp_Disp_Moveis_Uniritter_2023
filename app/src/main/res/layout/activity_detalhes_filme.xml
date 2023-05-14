@@ -39,9 +39,9 @@
                     android:id="@+id/image_poster_filme"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_gravity="center"
                     android:layout_marginStart="0dp"
                     android:layout_marginEnd="0dp"
-                    android:layout_gravity="center"
                     android:scaleType="fitXY"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -52,7 +52,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
-                    android:visibility="invisible"
+                    android:layout_gravity="right"
                     app:srcCompat="@android:drawable/star_big_on" />
 
             </androidx.cardview.widget.CardView>

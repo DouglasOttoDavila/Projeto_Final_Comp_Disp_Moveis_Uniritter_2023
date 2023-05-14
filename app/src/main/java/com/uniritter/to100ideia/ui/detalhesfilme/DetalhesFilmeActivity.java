@@ -4,12 +4,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.emoji2.text.EmojiCompat;
 
 import com.uniritter.to100ideia.data.model.Filme;
+import com.unirriter.api_filmes.R;
 import com.unirriter.api_filmes.databinding.ActivityDetalhesFilmeBinding;
 
 public class DetalhesFilmeActivity
@@ -24,6 +26,8 @@ public class DetalhesFilmeActivity
     //Declara o presenter da activity
     private DetalhesFilmeContrato.DetalhesFilmePresenter presenter;
 
+    private ImageView favorito;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +36,8 @@ public class DetalhesFilmeActivity
         binding = ActivityDetalhesFilmeBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
+
+        favorito = view.findViewById(R.id.estrelaDetalhe);
 
         //Inicializa o presenter da activity
         presenter = new DetalhesFilmePresenter(this);
@@ -59,11 +65,14 @@ public class DetalhesFilmeActivity
 
     @Override
     public void mostraFav(boolean fav) {
+
         if (!fav) {
-            binding.estrelaDetalhe.setVisibility(View.INVISIBLE);
+            favorito.setVisibility(View.INVISIBLE);
+            favorito.invalidate();
         }
         else {
-            binding.estrelaDetalhe.setVisibility(View.VISIBLE);
+            favorito.setVisibility(View.VISIBLE);
+            favorito.invalidate();
         }
     }
 
