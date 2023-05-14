@@ -48,11 +48,6 @@ public class DetalhesFilmeActivity
     }
 
     @Override
-    public void setBtn (String emojiCode, String text) {
-        binding.addFavoritos.setText(EmojiCompat.get().process(emojiCode) + text);
-    }
-
-    @Override
     public void mostrarDetalhes(Filme filme) {
         binding.textTituloFilme.setText(filme.getTitulo());
         binding.textDescricaoFilme.setText(filme.getDescricaoFilme());

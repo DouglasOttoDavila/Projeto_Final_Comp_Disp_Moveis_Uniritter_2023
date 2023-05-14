@@ -11,11 +11,11 @@ import com.uniritter.to100ideia.data.model.Filme;
 public interface DetalhesFilmeContrato {
     interface DetalhesFilmeView {
         void mostrarDetalhes(Filme filme);
-        void setBtn(String emojiCode, String text);
         void mostraMsg(String msg);
         void mostraFav(boolean fav);
         void recarregaActivity();
         void atualizaFavBtn(boolean fav);
+
 
     }
 

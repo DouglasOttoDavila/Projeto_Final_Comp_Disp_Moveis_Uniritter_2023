@@ -38,6 +38,13 @@ public class ListaFilmesPopularesActivity
 
     }
 
+    @Override
+    public void onRestart() {
+        super.onRestart();
+        finish();
+        startActivity(getIntent());
+    }
+
 
     private void configuraAdapter() {
         filmesAdapter = new ListaFilmesPopularesAdapter(this);
