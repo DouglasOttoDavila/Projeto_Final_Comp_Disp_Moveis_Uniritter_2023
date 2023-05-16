@@ -6,13 +6,9 @@ import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
-
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.google.firebase.auth.FirebaseAuth;
-import com.uniritter.to100ideia.ui.listaFilmesEmBreve.ListaFilmesEmBreveActivity;
-import com.uniritter.to100ideia.ui.listaFilmesPopulares.ListaFilmesPopularesActivity;
-import com.uniritter.to100ideia.ui.listaFilmesTop.ListaFilmesTopActivity;
+import com.uniritter.to100ideia.ui.listaFilmes.ListaFilmesActivity;
 import com.uniritter.to100ideia.ui.login.LoginActivity;
 import com.unirriter.api_filmes.databinding.ActivityMenuBinding;
 
@@ -31,9 +27,23 @@ public class MenuActivity extends AppCompatActivity {
 
         SharedPreferences sharedPreferences = getSharedPreferences("UserSession", Context.MODE_PRIVATE);
 
-        binding.filmesPopularesBtn.setOnClickListener(v -> acessaActivity(ListaFilmesPopularesActivity.class));
-        binding.filmesTopBtn.setOnClickListener(v -> acessaActivity(ListaFilmesTopActivity.class));
-        binding.filmesEmBreveBtn.setOnClickListener(v -> acessaActivity(ListaFilmesEmBreveActivity.class));
+        binding.filmesPopularesBtn.setOnClickListener(v -> {
+            Intent intent = new Intent(MenuActivity.this, ListaFilmesActivity.class);
+            intent.putExtra("endpoint", "populares");
+            startActivity(intent);
+        });
+
+        binding.filmesTopBtn.setOnClickListener(v -> {
+            Intent intent = new Intent(MenuActivity.this, ListaFilmesActivity.class);
+            intent.putExtra("endpoint", "top");
+            startActivity(intent);
+        });
+
+        binding.filmesEmBreveBtn.setOnClickListener(v -> {
+            Intent intent = new Intent(MenuActivity.this, ListaFilmesActivity.class);
+            intent.putExtra("endpoint", "recentes");
+            startActivity(intent);
+        });
 
         binding.userEmail.setText(sharedPreferences.getString("email", ""));
 
@@ -48,7 +58,7 @@ public class MenuActivity extends AppCompatActivity {
 
             // Finish the current activity and start the LoginActivity
             finish();
-            acessaActivity(LoginActivity.class);
+            startActivity(new Intent(MenuActivity.this, LoginActivity.class));
         });
 
         binding.theMovieDbLogo.setOnClickListener(v -> {
@@ -63,7 +73,4 @@ public class MenuActivity extends AppCompatActivity {
         // Do nothing - this will block the "back" button in this activity
     }
 
-    private void acessaActivity(Class<?> activityClass) {
-        startActivity(new Intent(this, activityClass));
-    }
 }

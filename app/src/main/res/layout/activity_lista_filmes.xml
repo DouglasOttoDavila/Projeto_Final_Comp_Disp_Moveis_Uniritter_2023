@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/red_bkg"
-    tools:context="com.uniritter.to100ideia.ui.listaFilmesPopulares.ListaFilmesPopularesActivity">
+    tools:context="com.uniritter.to100ideia.ui.listaFilmes.ListaFilmesActivity">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_filmes"
@@ -17,33 +17,33 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/detalhesTopTxt"
+        app:layout_constraintTop_toBottomOf="@+id/detalhesTxt"
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
-        android:id="@+id/topTxt"
+        android:id="@+id/tituloLista"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:fontFamily="@font/alata"
-        android:text="@string/melhores_avalia_es"
+        android:text="TÍTULO AQUI"
         android:textColor="@color/white"
-        android:textSize="25sp"
+        android:textSize="25dp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/detalhesTopTxt"
+        app:layout_constraintBottom_toTopOf="@+id/detalhesTxt"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/detalhesTopTxt"
+        android:id="@+id/detalhesTxt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingLeft="40dp"
         android:paddingRight="40dp"
-        android:text="@string/t_tulos_com_melhores_avalia_es_de_acordo_com_o_site_themoviedb"
+        android:text="TEXTO AQUI"
         android:textAlignment="center"
-        app:layout_constraintTop_toBottomOf="@+id/topTxt"
+        app:layout_constraintTop_toBottomOf="@+id/tituloLista"
         tools:layout_editor_absoluteX="4dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

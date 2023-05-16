@@ -1,4 +1,5 @@
-package com.uniritter.to100ideia.ui.listaFilmesPopulares;
+package com.uniritter.to100ideia.ui.listaFilmes;
+
 import static android.content.ContentValues.TAG;
 
 import android.util.Log;
@@ -11,30 +12,25 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.Query;
-import com.google.firebase.firestore.QuerySnapshot;
 import com.squareup.picasso.Picasso;
 import com.uniritter.to100ideia.data.model.Filme;
 import com.unirriter.api_filmes.R;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
-public class ListaFilmesPopularesAdapter // Classe que implementa o adapter da lista de filmes populares
-        extends RecyclerView.Adapter<ListaFilmesPopularesAdapter.ListaFilmesViewHolder> {
+public class ListaFilmesAdapter
+        extends RecyclerView.Adapter<ListaFilmesAdapter.ListaFilmesViewHolder> {
 
-    private List<Filme> filmes; // Lista de filmes
-    private static ItemFilmeClickListener itemFilmeClickListener; // Instancia o listener do item da lista
+    private List<Filme> filmes;
 
-    public ListaFilmesPopularesAdapter(ItemFilmeClickListener itemFilmeClickListener) { // Construtor que recebe o listener do item da lista
+    private static ItemFilmeClickListener itemFilmeClickListener;
+
+    public ListaFilmesAdapter(ItemFilmeClickListener itemFilmeClickListener) { // Construtor que recebe o listener do item da lista
         this.itemFilmeClickListener = itemFilmeClickListener; // Atribui o listener do item da lista
         filmes = new ArrayList<>(); // Instancia a lista de filmes
     }
@@ -89,8 +85,8 @@ public class ListaFilmesPopularesAdapter // Classe que implementa o adapter da l
             textTituloFilme.setText(titulo); // Atribui o título do filme ao componente de texto do item da lista
             String resolution = "w342"; // Define a resolução da imagem
             Picasso.get() // Carrega a imagem do filme
-                .load("https://image.tmdb.org/t/p/"+ resolution + "/" + filme.getCaminhoPoster()) // Define a URL da imagem
-                .into(imagePosterFilme); // Atribui a imagem ao componente de imagem do item da lista
+                    .load("https://image.tmdb.org/t/p/"+ resolution + "/" + filme.getCaminhoPoster()) // Define a URL da imagem
+                    .into(imagePosterFilme); // Atribui a imagem ao componente de imagem do item da lista
 
             checkFilmeFavorito(titulo, estrelaFav); // Chama o método que verifica se o filme é favorito
         }
@@ -138,5 +134,6 @@ public class ListaFilmesPopularesAdapter // Classe que implementa o adapter da l
     public interface ItemFilmeClickListener { // Interface que define o listener do item da lista
         void onItemFilmeClicado(Filme filme); // Método que define o listener do item da lista
     }
+
 
 }
