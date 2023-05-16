@@ -14,7 +14,7 @@ import com.unirriter.api_filmes.databinding.ActivityMenuBinding;
 
 public class MenuActivity extends AppCompatActivity {
 
-    ActivityMenuBinding binding;
+    ActivityMenuBinding binding; //Binding para o layout da activity
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,9 +27,9 @@ public class MenuActivity extends AppCompatActivity {
 
         SharedPreferences sharedPreferences = getSharedPreferences("UserSession", Context.MODE_PRIVATE);
 
-        binding.filmesPopularesBtn.setOnClickListener(v -> {
-            Intent intent = new Intent(MenuActivity.this, ListaFilmesActivity.class);
-            intent.putExtra("endpoint", "populares");
+        binding.filmesPopularesBtn.setOnClickListener(v -> { //Ao clicar no botão de filmes populares, inicia a activity de lista de filmes
+            Intent intent = new Intent(MenuActivity.this, ListaFilmesActivity.class); //Cria um intent para a activity de lista de filmes
+            intent.putExtra("endpoint", "populares"); //Passa o endpoint para a activity de lista de filmes
             startActivity(intent);
         });
 
@@ -43,6 +43,12 @@ public class MenuActivity extends AppCompatActivity {
             Intent intent = new Intent(MenuActivity.this, ListaFilmesActivity.class);
             intent.putExtra("endpoint", "recentes");
             startActivity(intent);
+        });
+
+        binding.meusFavoritosTxt.setOnClickListener(v -> {
+            /*Intent intent = new Intent(MenuActivity.this, ListaFilmesActivity.class);
+            intent.putExtra("endpoint", "recentes");
+            startActivity(intent);*/
         });
 
         binding.userEmail.setText(sharedPreferences.getString("email", ""));
