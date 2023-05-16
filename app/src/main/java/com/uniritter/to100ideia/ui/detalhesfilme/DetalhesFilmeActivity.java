@@ -1,7 +1,9 @@
 package com.uniritter.to100ideia.ui.detalhesfilme;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -43,7 +45,6 @@ public class DetalhesFilmeActivity
         presenter = new DetalhesFilmePresenter(this);
         Intent intent = getIntent();
         presenter.carregarDetalhes(intent, EXTRA_FILME, "w500", binding.imagePosterFilme);
-        presenter.addFilmeAosFavoritos(this, binding.addFavoritos, (Filme) getIntent().getSerializableExtra(EXTRA_FILME));
 
     }
 
@@ -82,9 +83,15 @@ public class DetalhesFilmeActivity
     public void atualizaFavBtn(boolean fav) {
         if (fav) {
             binding.addFavoritos.setText(EmojiCompat.get().process("\u2b50") + "Remover dos favoritos");
+            binding.addFavoritos.setOnClickListener(v -> {
+                presenter.removeFilmeDosFavoritos(this, binding.addFavoritos, (Filme) getIntent().getSerializableExtra(EXTRA_FILME));
+            });
         }
         else {
             binding.addFavoritos.setText(EmojiCompat.get().process("\u2b50") + "Adicionar aos favoritos");
+            binding.addFavoritos.setOnClickListener(v -> {
+                presenter.addFilmeAosFavoritos(this, binding.addFavoritos, (Filme) getIntent().getSerializableExtra(EXTRA_FILME));
+            });
         }
     }
 

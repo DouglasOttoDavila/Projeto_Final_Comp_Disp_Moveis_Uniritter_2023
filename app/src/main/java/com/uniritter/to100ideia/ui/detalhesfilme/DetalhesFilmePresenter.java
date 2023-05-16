@@ -6,7 +6,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
@@ -24,10 +23,10 @@ import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.squareup.picasso.Picasso;
 import com.uniritter.to100ideia.data.model.Filme;
-import com.unirriter.api_filmes.R;
 import com.unirriter.api_filmes.databinding.ActivityDetalhesFilmeBinding;
 
 import java.util.List;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class DetalhesFilmePresenter implements DetalhesFilmeContrato.DetalhesFilmePresenter {
 
@@ -99,57 +98,98 @@ public class DetalhesFilmePresenter implements DetalhesFilmeContrato.DetalhesFil
 
     }
 
-    public void addFilmeAosFavoritos(Context context, Button botao, Filme filme) {
-        botao.setOnClickListener(v -> {
-            SharedPreferences sharedPreferences = context.getSharedPreferences("UserSession", Context.MODE_PRIVATE);
-            String usuario = sharedPreferences.getString("email", "");
+    public void removeFilmeDosFavoritos(Context context, Button botao, Filme filme) {
+        SharedPreferences sharedPreferences = context.getSharedPreferences("UserSession", Context.MODE_PRIVATE);
+        String usuario = sharedPreferences.getString("email", "");
 
-            // Get a reference to the Firestore collection
-            CollectionReference colRef = FirebaseFirestore.getInstance().collection("usuarios");
+        // Get the current user's UID
+        String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
-            // Create a query to find the document with the matching email field
-            Query query = colRef.whereEqualTo("email", usuario);
+        // Get a reference to the Firestore database for the current user
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        DocumentReference docRef = db.collection("usuarios").document(uid);
 
-            // Get the document reference for the document
-            query.get()
-                    .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-                        @Override
-                        public void onSuccess(QuerySnapshot querySnapshot) {
-                            // Get the document reference from the query snapshot
-                            DocumentReference docRef = querySnapshot.getDocuments().get(0).getReference();
-
-                            // Update the array field in the document
-                            docRef.update("filmesFavoritos", FieldValue.arrayUnion(filme.getTitulo()))
-                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                        @Override
-                                        public void onSuccess(Void aVoid) {
-                                            view.mostraMsg("Filme adicionado aos favoritos!");
-                                            Log.d(TAG, "Document updated successfully");
-                                            view.atualizaFavBtn(true);
-                                            view.recarregaActivity();
-                                        }
-                                    })
-                                    .addOnFailureListener(new OnFailureListener() {
-                                        @Override
-                                        public void onFailure(@NonNull Exception e) {
-                                            view.mostraMsg("Erro ao adicionar filme aos favoritos.");
-                                            Log.w(TAG, "Error updating document", e);
-                                            view.atualizaFavBtn(false);
-                                            view.recarregaActivity();
-                                        }
-                                    });
-                            docRef.update("hasFilmesFavoritos", true);
-                        }
-                    })
-                    .addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            Log.w(TAG, "Error querying document", e);
-                        }
-                    });
-
-
-
+        // Check if the given movie title exists in the user's favorite movies array
+        docRef.get().addOnSuccessListener(documentSnapshot -> {
+            if (documentSnapshot.exists()) {
+                List<String> filmesFavoritos = (List<String>) documentSnapshot.get("filmesFavoritos");
+                if (filmesFavoritos != null && filmesFavoritos.contains(filme.getTitulo())) {
+                    // If the given movie title exists in the user's favorite movies array,
+                    // remove it from the array
+                    filmesFavoritos.remove(filme.getTitulo());
+                    // Update the user's document in Firestore with the updated filmesFavoritos array
+                    docRef.update("filmesFavoritos", filmesFavoritos)
+                            .addOnSuccessListener(aVoid -> {
+                                // If the update is successful, set the star image view to the empty star icon to indicate that the movie is not a favorite
+                                view.mostraMsg("Filme removido dos favoritos!");
+                                view.mostraFav(false);
+                                view.atualizaFavBtn(false);
+                                if (filmesFavoritos.isEmpty()) {
+                                    db.collection("usuarios").document(uid).update("hasFilmesFavoritos", false);
+                                }
+                            })
+                            .addOnFailureListener(e -> {
+                                // Handle any errors that occur while updating the document
+                                Log.e(TAG, "Error updating Firestore", e);
+                            });
+                } else {
+                    // If the given movie title does not exist in the user's favorite movies array,
+                    // set the star image view to the empty star icon to indicate that the movie is not a favorite
+                    /*estrelaFav.setImageResource(R.drawable.ic_star_empty);*/
+                }
+            }
+        }).addOnFailureListener(e -> {
+            // Handle any errors that occur while querying the database
+            Log.e(TAG, "Error querying Firestore", e);
         });
+    }
+
+    public void addFilmeAosFavoritos(Context context, Button botao, Filme filme) {
+        SharedPreferences sharedPreferences = context.getSharedPreferences("UserSession", Context.MODE_PRIVATE);
+        String usuario = sharedPreferences.getString("email", "");
+
+        // Get a reference to the Firestore collection
+        CollectionReference colRef = FirebaseFirestore.getInstance().collection("usuarios");
+
+        // Create a query to find the document with the matching email field
+        Query query = colRef.whereEqualTo("email", usuario);
+
+        // Get the document reference for the document
+        query.get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot querySnapshot) {
+                        // Get the document reference from the query snapshot
+                        DocumentReference docRef = querySnapshot.getDocuments().get(0).getReference();
+
+                        // Update the array field in the document
+                        docRef.update("filmesFavoritos", FieldValue.arrayUnion(filme.getTitulo()))
+                                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    @Override
+                                    public void onSuccess(Void aVoid) {
+                                        view.mostraMsg("Filme adicionado aos favoritos!");
+                                        Log.d(TAG, "Document updated successfully");
+                                        view.atualizaFavBtn(true);
+                                        view.recarregaActivity();
+                                    }
+                                })
+                                .addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                        view.mostraMsg("Erro ao adicionar filme aos favoritos.");
+                                        Log.w(TAG, "Error updating document", e);
+                                        view.atualizaFavBtn(false);
+                                        view.recarregaActivity();
+                                    }
+                                });
+                        docRef.update("hasFilmesFavoritos", true);
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w(TAG, "Error querying document", e);
+                    }
+                });
     }
 }

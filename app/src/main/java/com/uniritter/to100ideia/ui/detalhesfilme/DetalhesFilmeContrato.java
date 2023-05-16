@@ -15,13 +15,12 @@ public interface DetalhesFilmeContrato {
         void mostraFav(boolean fav);
         void recarregaActivity();
         void atualizaFavBtn(boolean fav);
-
-
     }
 
     interface DetalhesFilmePresenter {
         void checkFilmeFavorito(String titulo, ImageView estrela);
         void addFilmeAosFavoritos(Context context, Button botao, Filme filme);
+        void removeFilmeDosFavoritos(Context context, Button botao, Filme filme);
         void carregarDetalhes(Intent intent, String extra, String resolucao, ImageView imagePoster);
     }
 }
