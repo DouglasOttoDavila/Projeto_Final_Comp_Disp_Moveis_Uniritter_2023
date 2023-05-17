@@ -16,6 +16,9 @@
         android:theme="@style/Theme.APIFilmes"
         tools:targetApi="31">
         <activity
+            android:name="com.uniritter.to100ideia.ui.filmesFavoritos.FilmesFavoritosActivity"
+            android:exported="false" />
+        <activity
             android:name="com.uniritter.to100ideia.ui.listaFilmes.ListaFilmesActivity"
             android:exported="false" />
         <activity

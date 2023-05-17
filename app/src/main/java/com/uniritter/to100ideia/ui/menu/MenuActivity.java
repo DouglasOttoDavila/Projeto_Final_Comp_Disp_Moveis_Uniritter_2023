@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 import com.google.firebase.auth.FirebaseAuth;
+import com.uniritter.to100ideia.ui.filmesFavoritos.FilmesFavoritosActivity;
 import com.uniritter.to100ideia.ui.listaFilmes.ListaFilmesActivity;
 import com.uniritter.to100ideia.ui.login.LoginActivity;
 import com.unirriter.api_filmes.databinding.ActivityMenuBinding;
@@ -46,9 +47,9 @@ public class MenuActivity extends AppCompatActivity {
         });
 
         binding.meusFavoritosTxt.setOnClickListener(v -> {
-            /*Intent intent = new Intent(MenuActivity.this, ListaFilmesActivity.class);
-            intent.putExtra("endpoint", "recentes");
-            startActivity(intent);*/
+            Intent intent = new Intent(MenuActivity.this, FilmesFavoritosActivity.class);
+            /*intent.putExtra("endpoint", "recentes");*/
+            startActivity(intent);
         });
 
         binding.userEmail.setText(sharedPreferences.getString("email", ""));

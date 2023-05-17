@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/red_bkg"
+    tools:context="com.uniritter.to100ideia.ui.filmesFavoritos.FilmesFavoritosActivity">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_favoritos"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/detalhesFavoritos"/>
+
+    <TextView
+        android:id="@+id/tituloFavoritos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/alata"
+        android:text="Filmes Favoritos"
+        android:textColor="@color/white"
+        android:textSize="25dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/detalhesFavoritos"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/detalhesFavoritos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="40dp"
+        android:paddingRight="40dp"
+        android:text="Veja aqui todos os filmes favoritados por você."
+        android:textAlignment="center"
+        app:layout_constraintTop_toBottomOf="@+id/tituloFavoritos"
+        tools:layout_editor_absoluteX="4dp" />
+
+    <TextView
+        android:id="@+id/dispMoveisJeanPaul"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:fontFamily="@font/alata"
+        android:text="Computação para Dispositivos Móveis - Prof. Jean Paul (Uniritter)"
+        android:textColor="@color/white"
+        android:textSize="9sp"
+        app:layout_constraintBottom_toBottomOf="@+id/ritterLogo"
+        app:layout_constraintStart_toEndOf="@+id/ritterLogo" />
+
+    <TextView
+        android:id="@+id/creditoFooter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:fontFamily="@font/alata"
+        android:text="Criado por Douglas Otto D'Avila - Abr/2023"
+        android:textColor="@color/white"
+        android:textSize="9sp"
+        app:layout_constraintStart_toEndOf="@+id/ritterLogo"
+        app:layout_constraintTop_toTopOf="@+id/ritterLogo" />
+
+    <ImageView
+        android:id="@+id/theMovieDbLogo"
+        android:layout_width="83dp"
+        android:layout_height="26dp"
+        android:layout_marginBottom="4dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/tmdb" />
+
+    <ImageView
+        android:id="@+id/ritterLogo"
+        android:layout_width="26dp"
+        android:layout_height="27dp"
+        android:layout_marginStart="7dp"
+        android:layout_marginBottom="7dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/uniritter" />
+</androidx.constraintlayout.widget.ConstraintLayout>
