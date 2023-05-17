@@ -1,5 +1,8 @@
 package com.uniritter.to100ideia.ui.filmesFavoritos;
 
+import static android.content.ContentValues.TAG;
+
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -7,11 +10,16 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.unirriter.api_filmes.R;
+import com.unirriter.api_filmes.databinding.ActivityFilmesFavoritosBinding;
 
 import java.util.List;
 
-public class FilmesFavoritosAdapter extends RecyclerView.Adapter<FilmesFavoritosAdapter.ViewHolder> {
+public class FilmesFavoritosAdapter
+        extends RecyclerView.Adapter<FilmesFavoritosAdapter.ViewHolder> {
 
     private List<String> titulos;
 

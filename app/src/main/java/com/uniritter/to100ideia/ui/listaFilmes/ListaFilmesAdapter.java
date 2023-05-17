@@ -64,6 +64,7 @@ public class ListaFilmesAdapter
 
         private ImageView estrelaFav; // Instancia o componente da imagem da estrela de favorito do item da lista
         private Filme filme; // Instancia o filme
+
         public ListaFilmesViewHolder(View itemView) { // Construtor que recebe o item da lista
             super(itemView); // Chama o construtor da superclasse
             textTituloFilme = itemView.findViewById(R.id.text_titulo_filme); // Atribui o componente de texto do item da lista

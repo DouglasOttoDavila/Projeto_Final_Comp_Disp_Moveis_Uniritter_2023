@@ -28,7 +28,8 @@ import com.unirriter.api_filmes.databinding.ActivityDetalhesFilmeBinding;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
 
-public class DetalhesFilmePresenter implements DetalhesFilmeContrato.DetalhesFilmePresenter {
+public class DetalhesFilmePresenter
+        implements DetalhesFilmeContrato.DetalhesFilmePresenter {
 
     private DetalhesFilmeContrato.DetalhesFilmeView view;
     private ImageView estrelaFav; // Instancia o componente da imagem da estrela de favorito do item da lista
