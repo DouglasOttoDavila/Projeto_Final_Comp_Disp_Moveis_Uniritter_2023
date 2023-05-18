@@ -22,6 +22,10 @@ public class FilmesFavoritosPresenter
         this.view = view;
     }
 
+    public void getMovieImage () {
+
+    }
+
     public void exibeFavoritos(RecyclerView recyclerView) {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         FirebaseAuth auth = FirebaseAuth.getInstance();

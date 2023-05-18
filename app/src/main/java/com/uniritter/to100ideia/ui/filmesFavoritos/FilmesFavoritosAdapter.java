@@ -21,23 +21,23 @@ import java.util.List;
 public class FilmesFavoritosAdapter
         extends RecyclerView.Adapter<FilmesFavoritosAdapter.ViewHolder> {
 
-    private List<String> titulos;
+    private List<String> titulos; // Define a lista de titulos
 
     public FilmesFavoritosAdapter(List<String> titulos) {
         this.titulos = titulos;
+    } // Construtor
+
+    @Override
+    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) { // Cria a view
+        View view = LayoutInflater.from(parent.getContext()) // Define o layout
+                .inflate(R.layout.item_favorito, parent, false); // Define o layout
+        return new ViewHolder(view); // Retorna a view
     }
 
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_favorito, parent, false);
-        return new ViewHolder(view);
-    }
+    public void onBindViewHolder(ViewHolder holder, int position) { // Define o conteúdo da view
 
-    @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
-        String titulo = titulos.get(position);
-        holder.textViewFavorito.setText(titulo);
+        holder.textViewFavorito.setText(titulos.get(position));
     }
 
     @Override

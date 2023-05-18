@@ -114,14 +114,21 @@ public class DetalhesFilmePresenter
         docRef.get().addOnSuccessListener(documentSnapshot -> {
             if (documentSnapshot.exists()) {
                 List<String> filmesFavoritos = (List<String>) documentSnapshot.get("filmesFavoritos");
+                List<String> imgUrls = (List<String>) documentSnapshot.get("imgUrls");
+                Log.w(TAG, "FILMES FAVORITOS: " + filmesFavoritos);
+                Log.w(TAG, "URL: " + imgUrls);
                 if (filmesFavoritos != null && filmesFavoritos.contains(filme.getTitulo())) {
                     // If the given movie title exists in the user's favorite movies array,
                     // remove it from the array
                     filmesFavoritos.remove(filme.getTitulo());
+                    imgUrls.remove(filme.getCaminhoPoster());
+                    Log.w(TAG, "FILME REMOVIDO DOS FAVORITOS: " + filme.getTitulo());
+                    Log.w(TAG, "URL REMOVIDA DOS FAVORITOS: " + filme.getCaminhoPoster());
                     // Update the user's document in Firestore with the updated filmesFavoritos array
                     docRef.update("filmesFavoritos", filmesFavoritos)
                             .addOnSuccessListener(aVoid -> {
                                 // If the update is successful, set the star image view to the empty star icon to indicate that the movie is not a favorite
+                                docRef.update("imgUrls", imgUrls);
                                 view.mostraMsg("Filme removido dos favoritos!");
                                 view.mostraFav(false);
                                 view.atualizaFavBtn(false);
@@ -172,6 +179,7 @@ public class DetalhesFilmePresenter
                                         Log.d(TAG, "Document updated successfully");
                                         view.atualizaFavBtn(true);
                                         view.recarregaActivity();
+                                        docRef.update("imgUrls", FieldValue.arrayUnion(filme.getCaminhoPoster()));
                                     }
                                 })
                                 .addOnFailureListener(new OnFailureListener() {
