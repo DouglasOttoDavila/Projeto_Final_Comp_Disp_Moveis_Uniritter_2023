@@ -45,7 +45,6 @@ public class FilmesFavoritosActivity
 
         //Inicializa o presenter da activity
         presenter = new FilmesFavoritosPresenter(this);
-
         presenter.exibeFavoritos(binding.recyclerFavoritos); //Exibe os filmes favoritos
 
     }
