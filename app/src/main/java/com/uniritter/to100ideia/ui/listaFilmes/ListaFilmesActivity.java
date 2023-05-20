@@ -53,9 +53,7 @@ public class ListaFilmesActivity
             setDescricao("Os filmes mais recentes de acordo com o site TheMovieDB.");
             presenter.obtemFilmesEmBreve();
         }
-
         configuraAdapter();
-
     }
 
     @Override

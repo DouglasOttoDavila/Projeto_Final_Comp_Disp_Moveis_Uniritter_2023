@@ -49,6 +49,14 @@ public class FilmesFavoritosActivity
 
     }
 
+    @Override
+    public void recarregaActivity() {
+        Intent intent = getIntent();
+        finish();
+        startActivity(intent);
+        Log.w(TAG, "Atividade recarregada com sucesso!");
+    }
+
     private void configuraAdapter() {
         binding.recyclerFavoritos.setLayoutManager(new LinearLayoutManager(this));
     }

@@ -5,7 +5,7 @@ import androidx.recyclerview.widget.RecyclerView;
 public interface FilmesFavoritosContrato {
 
     interface FilmesFavoritosView {
-
+        void recarregaActivity();
     }
 
     interface FilmesFavoritosPresenter {

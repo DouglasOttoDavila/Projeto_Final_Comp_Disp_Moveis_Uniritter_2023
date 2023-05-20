@@ -89,11 +89,12 @@ public class FilmesFavoritosPresenter
                         docRef.update("imgUrls", urls, "filmesFavoritos", titulos)
                                 .addOnSuccessListener(aVoid -> Log.d(TAG, "Movie removed from Firestore"))
                                 .addOnFailureListener(e -> Log.e(TAG, "Error updating document", e));
+
+                        view.recarregaActivity();
                     }
                 }
             }).addOnFailureListener(e -> Log.e(TAG, "Error getting document", e));
         }
-
     }
 
     public void getUrlFavorito(int index, UrlCallback callback) {
