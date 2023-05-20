@@ -95,8 +95,15 @@ public class FilmesFavoritosPresenter
                                 .addOnSuccessListener(aVoid -> Log.d(TAG, "Movie removed from Firestore"))
                                 .addOnFailureListener(e -> Log.e(TAG, "Error updating document", e));
 
-                        view.recarregaActivity();
-                        view.exibeMsg(titulo + " foi removido dos favoritos.");
+                        if (titulos.isEmpty()) {
+                            view.exibeMsg("Você não tem filmes favoritos.");
+
+                            view.exibeListaVazia();
+                        } else {
+                            view.exibeMsg(titulo + " foi removido dos favoritos.");
+                            view.recarregaActivity();
+                        }
+
                     }
                     checkListaVazia(Objects.requireNonNull(titulos));
                 }
