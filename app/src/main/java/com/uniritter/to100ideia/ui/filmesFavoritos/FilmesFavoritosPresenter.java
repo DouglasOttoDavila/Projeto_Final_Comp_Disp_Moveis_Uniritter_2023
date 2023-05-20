@@ -34,7 +34,7 @@ public class FilmesFavoritosPresenter
         void onFailure(String errorMessage);
     }
 
-    public int checkPosImg(String titulo) {
+    /*public int checkPosImg(String titulo) {
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
@@ -61,7 +61,7 @@ public class FilmesFavoritosPresenter
                     Log.e(TAG, "Error querying Firestore", e);
                 });
         return index;
-    }
+    }*/
 
     public void setImgFavorito (int i, UrlCallback callback) {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser(); // Get the current user

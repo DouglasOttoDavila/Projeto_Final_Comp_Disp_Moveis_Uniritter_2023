@@ -53,6 +53,4 @@ public class FilmesFavoritosActivity
         binding.recyclerFavoritos.setLayoutManager(new LinearLayoutManager(this));
     }
 
-
-
 }
