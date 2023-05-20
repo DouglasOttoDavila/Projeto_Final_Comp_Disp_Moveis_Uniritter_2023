@@ -28,71 +28,39 @@ public class FilmesFavoritosPresenter
         this.view = view;
     }
 
-    // Define a callback interface
+    // Define a interface para o callback
     public interface UrlCallback {
         void onUrlReceived(String url);
         void onFailure(String errorMessage);
     }
 
-    /*public int checkPosImg(String titulo) {
-
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-
-        // Get the current user's UID
-        String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
-
-        // Get a reference to the Firestore database for the current user
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-        CollectionReference colRef = db.collection("usuarios");
-        Query query = colRef.whereArrayContains("filmesFavoritos", titulo);
-
-        // Query for documents where the "actors" array contains "Tom Hanks"
-        query.get()
-                .addOnSuccessListener(queryDocumentSnapshots -> {
-                    for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
-                        // Get the index of "Tom Hanks" in the "actors" array
-                        List<String> titulos = (List<String>) documentSnapshot.get("filmesFavoritos");
-                        int i = titulos.indexOf(titulo);
-                        Log.d(TAG, "O filme" + titulo + "está na posição " + i);
-                        index = i;
-                    }
-                })
-                .addOnFailureListener(e -> {
-                    Log.e(TAG, "Error querying Firestore", e);
-                });
-        return index;
-    }*/
-
     public void setImgFavorito (int i, UrlCallback callback) {
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser(); // Get the current user
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser(); // Adquire o usuário atual
         if (user != null) {
-            // Get the current user's UID
-            String uid = FirebaseAuth.getInstance().getCurrentUser().getUid(); // Get the current user's UID
-            // Get a reference to the Firestore database for the current user
+            String uid = FirebaseAuth.getInstance().getCurrentUser().getUid(); // Adquire o UID do usuário atual
+            // Adquire uma referência para o documento do usuário atual
             FirebaseFirestore db = FirebaseFirestore.getInstance();
             DocumentReference docRef = db.collection("usuarios").document(uid);
-
             docRef.get().addOnSuccessListener(documentSnapshot -> {
                 if (documentSnapshot.exists()) {
                     List<String> urls = (List<String>) documentSnapshot.get("imgUrls");
                     if (urls != null && urls.size() > 0) {
                         String movieUrl = urls.get(i);
-                        Log.d(TAG, "The movie at position " + i + "has URL: " + movieUrl);
-                        url = movieUrl;
-                        callback.onUrlReceived(movieUrl);  // Pass the URL to the callback
+                        Log.d(TAG, "O filme na posição " + i + " tem URL " + movieUrl);
+                        callback.onUrlReceived(movieUrl);  // Passa a URL para o callback
                     } else {
-                        callback.onFailure("No URLs found");
+                        callback.onFailure("Nenhuma URL encontrada.");
                     }
                 } else {
-                    callback.onFailure("User document not found");
+                    callback.onFailure("Documento não existe.");
                 }
             }).addOnFailureListener(e -> {
-                // Handle any errors that occur while querying the database
-                Log.e(TAG, "Error querying Firestore", e);
-                callback.onFailure(e.getMessage());  // Pass the error message to the callback
+                // Lida com os erros de leitura do Firestore
+                Log.e(TAG, "Erro ao buscar no Firestore", e);
+                callback.onFailure(e.getMessage());  // Informa o erro ao callback
             });
         } else {
-            callback.onFailure("User is not authenticated");
+            callback.onFailure("Usuário não está autenticado.");
         }
     }
 
@@ -108,10 +76,6 @@ public class FilmesFavoritosPresenter
                 callback.onFailure(errorMessage);  // Pass the error message to the outer callback
             }
         });
-
-        /*String favUrl = this.setImgFavorito(index);
-        Log.w(TAG, "posição " + index + " é " + favUrl);
-        return favUrl;*/
     }
 
     public void exibeFavoritos(RecyclerView recyclerView) {
@@ -131,10 +95,10 @@ public class FilmesFavoritosPresenter
                                 recyclerView.setAdapter(filmesFavoritosAdapter);
                             }
                         } else {
-                            Log.d(TAG, "User document not found.");
+                            Log.d(TAG, "Documento não encontrado.");
                         }
                     } else {
-                        Log.d(TAG, "Error getting user document: ", task.getException());
+                        Log.d(TAG, "Erro ao acessar documento: ", task.getException());
                     }
                 });
     }

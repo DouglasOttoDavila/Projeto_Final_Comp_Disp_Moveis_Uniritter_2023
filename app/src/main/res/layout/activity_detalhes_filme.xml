@@ -10,27 +10,27 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayoutFooter"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardView"
                 android:layout_width="330dp"
                 android:layout_height="460dp"
-                android:layout_marginRight="40dp"
+                android:layout_gravity="center"
                 android:layout_marginLeft="40dp"
                 android:layout_marginTop="15dp"
+                android:layout_marginRight="40dp"
                 android:layout_marginBottom="15dp"
                 android:orientation="vertical"
-                android:layout_gravity="center"
                 android:padding="10dp"
                 app:cardBackgroundColor="@color/white"
                 app:cardCornerRadius="15dp">
@@ -51,8 +51,8 @@
                     android:id="@+id/estrelaDetalhe"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
                     android:layout_gravity="right"
+                    android:layout_margin="10dp"
                     app:srcCompat="@android:drawable/star_big_on" />
 
             </androidx.cardview.widget.CardView>
@@ -61,9 +61,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginRight="40dp"
                 android:layout_marginLeft="40dp"
                 android:layout_marginTop="5dp"
+                android:layout_marginRight="40dp"
                 android:layout_marginBottom="15dp"
                 android:gravity="center"
                 app:cardCornerRadius="15dp">
@@ -96,9 +96,9 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/text_titulo_filme"
                         android:layout_gravity="center"
-                        android:layout_marginBottom="20dp"
-                        android:layout_marginRight="20dp"
                         android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp"
+                        android:layout_marginBottom="20dp"
                         android:fontFamily="@font/alata"
                         android:textAlignment="center"
                         android:textColor="@color/black"
@@ -108,15 +108,15 @@
                         android:id="@+id/addFavoritos"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp"
+                        android:layout_marginBottom="20dp"
                         android:backgroundTint="#1C1C1C"
+                        android:elevation="10dp"
                         android:fontFamily="@font/alata"
                         android:text="Adicionar aos Favoritos"
                         android:textSize="10sp"
-                        android:elevation="10dp"
-                        android:layout_gravity="center"
-                        android:layout_marginBottom="20dp"
-                        android:layout_marginRight="20dp"
-                        android:layout_marginLeft="20dp"
                         app:layout_constraintEnd_toEndOf="@+id/senhaField"
                         app:layout_constraintStart_toStartOf="@+id/senhaField"
                         app:layout_constraintTop_toBottomOf="@+id/senhaField" />
@@ -125,4 +125,71 @@
             </androidx.cardview.widget.CardView>
         </LinearLayout>
     </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/linearLayoutFooter"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:background="@color/black">
+
+        <ImageView
+            android:id="@+id/ritterLogo"
+            android:layout_width="26dp"
+            android:layout_height="27dp"
+            android:layout_marginStart="7dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:srcCompat="@drawable/uniritter" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp">
+
+            <TextView
+                android:id="@+id/creditoFooter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:fontFamily="@font/alata"
+                android:text="Criado por Douglas Otto D'Avila - Abr/2023"
+                android:textColor="@color/white"
+                android:textSize="9sp"
+                app:layout_constraintStart_toEndOf="@+id/ritterLogo"
+                app:layout_constraintTop_toTopOf="@+id/ritterLogo" />
+
+            <TextView
+                android:id="@+id/dispMoveisJeanPaul"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:fontFamily="@font/alata"
+                android:text="Computação para Dispositivos Móveis - Prof. Jean Paul (Uniritter)"
+                android:textColor="@color/white"
+                android:textSize="9sp"
+                app:layout_constraintBottom_toBottomOf="@+id/ritterLogo"
+                app:layout_constraintStart_toEndOf="@+id/ritterLogo" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="12dp">
+
+            <ImageView
+                android:id="@+id/theMovieDbLogo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/tmdb"/>
+        </LinearLayout>
+
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

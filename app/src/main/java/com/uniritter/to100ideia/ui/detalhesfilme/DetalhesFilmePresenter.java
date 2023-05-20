@@ -140,10 +140,6 @@ public class DetalhesFilmePresenter
                                 // Handle any errors that occur while updating the document
                                 Log.e(TAG, "Error updating Firestore", e);
                             });
-                } else {
-                    // If the given movie title does not exist in the user's favorite movies array,
-                    // set the star image view to the empty star icon to indicate that the movie is not a favorite
-                    /*estrelaFav.setImageResource(R.drawable.ic_star_empty);*/
                 }
             }
         }).addOnFailureListener(e -> {

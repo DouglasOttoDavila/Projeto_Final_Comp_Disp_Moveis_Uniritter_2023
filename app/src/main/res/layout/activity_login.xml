@@ -85,7 +85,7 @@
         android:fontFamily="@font/alata"
         android:text="@string/esqueci_minha_senha"
         android:textSize="12sp"
-        app:layout_constraintBottom_toTopOf="@+id/creditoFooter"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayoutFooter"
         app:layout_constraintEnd_toEndOf="@+id/acessarBtn"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/acessarBtn"
@@ -103,51 +103,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/tosemideia" />
 
-    <TextView
-        android:id="@+id/dispMoveisJeanPaul"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:fontFamily="@font/alata"
-        android:text="@string/computa_o_para_dispositivos_m_veis_prof_jean_paul_uniritter"
-        android:textColor="@color/white"
-        android:textSize="9sp"
-        app:layout_constraintBottom_toBottomOf="@+id/ritterLogo"
-        app:layout_constraintStart_toEndOf="@+id/ritterLogo"
-        tools:ignore="SmallSp" />
 
-    <TextView
-        android:id="@+id/creditoFooter"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:fontFamily="@font/alata"
-        android:text="@string/criado_por_douglas_otto_d_avila_abr_2023"
-        android:textColor="@color/white"
-        android:textSize="9sp"
-        app:layout_constraintStart_toEndOf="@+id/ritterLogo"
-        app:layout_constraintTop_toTopOf="@+id/ritterLogo"
-        tools:ignore="SmallSp" />
-
-    <ImageView
-        android:id="@+id/theMovieDbLogo"
-        android:layout_width="83dp"
-        android:layout_height="26dp"
-        android:layout_marginBottom="4dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/tmdb" />
-
-    <ImageView
-        android:id="@+id/ritterLogo"
-        android:layout_width="26dp"
-        android:layout_height="27dp"
-        android:layout_marginStart="7dp"
-        android:layout_marginBottom="7dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/uniritter"
-        android:contentDescription="@string/uniritter" />
 
     <TextView
         android:id="@+id/frase1Text"
@@ -188,4 +144,71 @@
         app:layout_constraintStart_toStartOf="@+id/esqueciSenhaBtn"
         app:layout_constraintTop_toBottomOf="@+id/esqueciSenhaBtn" />
 
+
+    <LinearLayout
+        android:id="@+id/linearLayoutFooter"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:background="@color/black">
+
+        <ImageView
+            android:id="@+id/ritterLogo"
+            android:layout_width="26dp"
+            android:layout_height="27dp"
+            android:layout_marginStart="7dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:srcCompat="@drawable/uniritter" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp">
+
+            <TextView
+                android:id="@+id/creditoFooter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:fontFamily="@font/alata"
+                android:text="Criado por Douglas Otto D'Avila - Abr/2023"
+                android:textColor="@color/white"
+                android:textSize="9sp"
+                app:layout_constraintStart_toEndOf="@+id/ritterLogo"
+                app:layout_constraintTop_toTopOf="@+id/ritterLogo" />
+
+            <TextView
+                android:id="@+id/dispMoveisJeanPaul"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:fontFamily="@font/alata"
+                android:text="Computação para Dispositivos Móveis - Prof. Jean Paul (Uniritter)"
+                android:textColor="@color/white"
+                android:textSize="9sp"
+                app:layout_constraintBottom_toBottomOf="@+id/ritterLogo"
+                app:layout_constraintStart_toEndOf="@+id/ritterLogo" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="12dp">
+
+            <ImageView
+                android:id="@+id/theMovieDbLogo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/tmdb"/>
+        </LinearLayout>
+
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
