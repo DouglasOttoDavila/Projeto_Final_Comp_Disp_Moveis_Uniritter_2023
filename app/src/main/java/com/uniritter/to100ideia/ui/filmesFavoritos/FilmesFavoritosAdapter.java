@@ -53,6 +53,12 @@ public class FilmesFavoritosAdapter
                 // Handle the failure, e.g., display a placeholder image or show an error message
             }
         });
+
+        // Set the click listener for the delete button
+        holder.imgRemove.setOnClickListener(v -> {
+            // Call the presenter method to remove the movie from Firestore
+            presenter.removeFavorito(position);
+        });
     }
 
     public void setItemImage(ImageView imageView, String imageUrl) {
@@ -75,10 +81,13 @@ public class FilmesFavoritosAdapter
         public TextView textViewFavorito;
         public ImageView imgFavorito;
 
+        public ImageView imgRemove;
+
         public ViewHolder(View itemView) {
             super(itemView);
             textViewFavorito = itemView.findViewById(R.id.textViewFavorito);
             imgFavorito = itemView.findViewById(R.id.imgFavorito);
+            imgRemove = itemView.findViewById(R.id.imgRemove);
         }
     }
 

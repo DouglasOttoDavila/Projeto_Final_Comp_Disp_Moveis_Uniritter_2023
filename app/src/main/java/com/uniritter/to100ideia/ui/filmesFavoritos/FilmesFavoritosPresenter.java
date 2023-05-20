@@ -2,7 +2,9 @@ package com.uniritter.to100ideia.ui.filmesFavoritos;
 
 import static android.content.ContentValues.TAG;
 
+import android.content.Context;
 import android.util.Log;
+import android.widget.Button;
 
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -64,6 +66,31 @@ public class FilmesFavoritosPresenter
         }
     }
 
+    public void removeFavorito(int position) {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+            String uid = user.getUid();
+            FirebaseFirestore db = FirebaseFirestore.getInstance();
+            DocumentReference docRef = db.collection("usuarios").document(uid);
+
+            docRef.get().addOnSuccessListener(documentSnapshot -> {
+                if (documentSnapshot.exists()) {
+                    List<String> titulos = (List<String>) documentSnapshot.get("filmesFavoritos");
+                    List<String> urls = (List<String>) documentSnapshot.get("imgUrls");
+                    if (titulos != null && titulos.size() > position) {
+                        // Remove the movie URL from the list
+                        titulos.remove(position);
+                        urls.remove(position);
+                        // Update the "imgUrls" field in the Firestore document
+                        docRef.update("imgUrls", urls, "filmesFavoritos", titulos)
+                                .addOnSuccessListener(aVoid -> Log.d(TAG, "Movie removed from Firestore"))
+                                .addOnFailureListener(e -> Log.e(TAG, "Error updating document", e));
+                    }
+                }
+            }).addOnFailureListener(e -> Log.e(TAG, "Error getting document", e));
+        }
+    }
+
     public void getUrlFavorito(int index, UrlCallback callback) {
         setImgFavorito(index, new UrlCallback() {
             @Override
@@ -102,4 +129,5 @@ public class FilmesFavoritosPresenter
                     }
                 });
     }
+
 }
