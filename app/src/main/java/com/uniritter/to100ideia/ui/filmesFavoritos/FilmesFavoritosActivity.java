@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Adapter;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -54,7 +55,13 @@ public class FilmesFavoritosActivity
         Intent intent = getIntent();
         finish();
         startActivity(intent);
-        Log.w(TAG, "Atividade recarregada com sucesso!");
+
+    }
+
+    @Override
+    public void exibeMsg(String msg) {
+        Toast.makeText(this, msg, Toast.LENGTH_LONG).show();
+        Log.d(TAG, msg);
     }
 
     private void configuraAdapter() {

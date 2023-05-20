@@ -77,6 +77,9 @@ public class FilmesFavoritosPresenter
                     List<String> titulos = (List<String>) documentSnapshot.get("filmesFavoritos");
                     List<String> urls = (List<String>) documentSnapshot.get("imgUrls");
                     if (titulos != null && titulos.size() > position && urls != null && urls.size() > position) {
+
+                        String titulo = titulos.get(position);
+
                         // Remove o filme da lista de favoritos (títulos e URLs)
                         titulos.remove(position);
                         urls.remove(position);
@@ -91,6 +94,7 @@ public class FilmesFavoritosPresenter
                                 .addOnFailureListener(e -> Log.e(TAG, "Error updating document", e));
 
                         view.recarregaActivity();
+                        view.exibeMsg(titulo + " foi removido dos favoritos.");
                     }
                 }
             }).addOnFailureListener(e -> Log.e(TAG, "Error getting document", e));

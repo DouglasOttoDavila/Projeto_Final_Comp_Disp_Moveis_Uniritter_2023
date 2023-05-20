@@ -6,6 +6,7 @@ public interface FilmesFavoritosContrato {
 
     interface FilmesFavoritosView {
         void recarregaActivity();
+        void exibeMsg(String msg);
     }
 
     interface FilmesFavoritosPresenter {
