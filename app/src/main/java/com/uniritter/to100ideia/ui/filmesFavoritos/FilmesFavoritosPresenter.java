@@ -68,12 +68,12 @@ public class FilmesFavoritosPresenter
         setImgFavorito(index, new UrlCallback() {
             @Override
             public void onUrlReceived(String url) {
-                callback.onUrlReceived(url);  // Pass the URL to the outer callback
+                callback.onUrlReceived(url);  // Passa a URL para o callback
             }
 
             @Override
             public void onFailure(String errorMessage) {
-                callback.onFailure(errorMessage);  // Pass the error message to the outer callback
+                callback.onFailure(errorMessage);  // Passa a mensagem de erro para o callback
             }
         });
     }
