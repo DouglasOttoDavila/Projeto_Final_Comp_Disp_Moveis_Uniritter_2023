@@ -57,6 +57,12 @@ public class FilmesFavoritosActivity
         startActivity(intent);
 
     }
+    @Override
+    public void exibeListaVazia() {
+        binding.recyclerFavoritos.setVisibility(View.GONE);
+        binding.imgFavNull.setVisibility(View.VISIBLE);
+        binding.textFavNull.setVisibility(View.VISIBLE);
+    }
 
     @Override
     public void exibeMsg(String msg) {

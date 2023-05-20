@@ -18,6 +18,7 @@ import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.unirriter.api_filmes.databinding.ActivityFilmesFavoritosBinding;
 import java.util.List;
+import java.util.Objects;
 
 public class FilmesFavoritosPresenter
         implements FilmesFavoritosContrato.FilmesFavoritosPresenter {
@@ -76,6 +77,7 @@ public class FilmesFavoritosPresenter
                 if (documentSnapshot.exists()) {
                     List<String> titulos = (List<String>) documentSnapshot.get("filmesFavoritos");
                     List<String> urls = (List<String>) documentSnapshot.get("imgUrls");
+
                     if (titulos != null && titulos.size() > position && urls != null && urls.size() > position) {
 
                         String titulo = titulos.get(position);
@@ -96,8 +98,18 @@ public class FilmesFavoritosPresenter
                         view.recarregaActivity();
                         view.exibeMsg(titulo + " foi removido dos favoritos.");
                     }
+                    checkListaVazia(Objects.requireNonNull(titulos));
                 }
-            }).addOnFailureListener(e -> Log.e(TAG, "Error getting document", e));
+            }).addOnFailureListener(e -> {
+                Log.e(TAG, "Error getting document", e);
+            });
+        }
+    }
+
+    public void checkListaVazia(List<String> titulos) {
+        if (titulos.isEmpty()) {
+            view.exibeMsg("Você não tem filmes favoritos.");
+            view.exibeListaVazia();
         }
     }
 
@@ -127,6 +139,8 @@ public class FilmesFavoritosPresenter
                         DocumentSnapshot userDocument = task.getResult();
                         if (userDocument.exists()) {
                             List<String> favoritos = (List<String>) userDocument.get("filmesFavoritos");
+                            checkListaVazia(Objects.requireNonNull(favoritos));
+
                             if (favoritos != null) {
                                 FilmesFavoritosAdapter filmesFavoritosAdapter = new FilmesFavoritosAdapter(favoritos, this);
                                 recyclerView.setAdapter(filmesFavoritosAdapter);

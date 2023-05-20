@@ -15,7 +15,7 @@
         android:layout_marginTop="15dp"
         android:layout_marginEnd="15dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayoutFooter"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/detalhesFavoritos" />
@@ -47,7 +47,7 @@
         tools:layout_editor_absoluteX="4dp" />
 
     <LinearLayout
-        android:id="@+id/linearLayout"
+        android:id="@+id/linearLayoutFooter"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:orientation="horizontal"
@@ -112,5 +112,32 @@
         </LinearLayout>
 
     </LinearLayout>
+
+    <ImageView
+        android:id="@+id/imgFavNull"
+        android:layout_width="255dp"
+        android:layout_height="260dp"
+        android:layout_marginBottom="80dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayoutFooter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/fav_null" />
+
+    <TextView
+        android:id="@+id/textFavNull"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/alata"
+        android:text="Volte ao menu para incluir novos títulos!"
+        android:textColor="#FCDB00"
+        android:textSize="15sp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="@+id/imgFavNull"
+        app:layout_constraintHorizontal_bias="0.529"
+        app:layout_constraintStart_toStartOf="@+id/imgFavNull"
+        app:layout_constraintTop_toBottomOf="@+id/imgFavNull" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
