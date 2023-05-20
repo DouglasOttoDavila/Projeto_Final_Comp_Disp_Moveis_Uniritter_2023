@@ -72,16 +72,20 @@ public class FilmesFavoritosPresenter
             String uid = user.getUid();
             FirebaseFirestore db = FirebaseFirestore.getInstance();
             DocumentReference docRef = db.collection("usuarios").document(uid);
-
             docRef.get().addOnSuccessListener(documentSnapshot -> {
                 if (documentSnapshot.exists()) {
                     List<String> titulos = (List<String>) documentSnapshot.get("filmesFavoritos");
                     List<String> urls = (List<String>) documentSnapshot.get("imgUrls");
-                    if (titulos != null && titulos.size() > position) {
-                        // Remove the movie URL from the list
+                    if (titulos != null && titulos.size() > position && urls != null && urls.size() > position) {
+                        // Remove o filme da lista de favoritos (títulos e URLs)
                         titulos.remove(position);
                         urls.remove(position);
-                        // Update the "imgUrls" field in the Firestore document
+
+                        if (titulos.isEmpty() && urls.isEmpty()) {
+                            db.collection("usuarios").document(uid).update("hasFilmesFavoritos", false);
+                        }
+
+                        // Atualiza o documento no Firestore
                         docRef.update("imgUrls", urls, "filmesFavoritos", titulos)
                                 .addOnSuccessListener(aVoid -> Log.d(TAG, "Movie removed from Firestore"))
                                 .addOnFailureListener(e -> Log.e(TAG, "Error updating document", e));
@@ -89,6 +93,7 @@ public class FilmesFavoritosPresenter
                 }
             }).addOnFailureListener(e -> Log.e(TAG, "Error getting document", e));
         }
+
     }
 
     public void getUrlFavorito(int index, UrlCallback callback) {
