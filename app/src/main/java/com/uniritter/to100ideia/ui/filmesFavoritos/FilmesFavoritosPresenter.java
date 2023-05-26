@@ -114,7 +114,10 @@ public class FilmesFavoritosPresenter
     }
 
     public void checkListaVazia(List<String> titulos) {
-        if (titulos.isEmpty()) {
+        if (titulos == null) {
+            view.exibeMsg("Você não tem filmes favoritos.");
+            view.exibeListaVazia();
+        } else if (titulos.isEmpty()) {
             view.exibeMsg("Você não tem filmes favoritos.");
             view.exibeListaVazia();
         }
@@ -146,7 +149,7 @@ public class FilmesFavoritosPresenter
                         DocumentSnapshot userDocument = task.getResult();
                         if (userDocument.exists()) {
                             List<String> favoritos = (List<String>) userDocument.get("filmesFavoritos");
-                            checkListaVazia(Objects.requireNonNull(favoritos));
+                            checkListaVazia(favoritos);
 
                             if (favoritos != null) {
                                 FilmesFavoritosAdapter filmesFavoritosAdapter = new FilmesFavoritosAdapter(favoritos, this);
