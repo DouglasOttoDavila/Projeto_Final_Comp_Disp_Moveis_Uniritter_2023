@@ -41,6 +41,23 @@ public class ListaFilmesPresenter
                 });
     }
 
+    @Override public void setEndpoint(String endpoint) {
+        switch (endpoint) {
+            case "populares":
+                view.updateView("Filmes Populares", "Os filmes mais populares do momento de acordo com o site TheMovieDB.");
+                obtemFilmesPopulares();
+                break;
+            case "top":
+                view.updateView("Melhores Avaliações", "Os filmes mais bem-avaliados de acordo com o site TheMovieDB.");
+                obtemFilmesTop();
+                break;
+            case "recentes":
+                view.updateView("Lançamentos Recentes", "Os filmes mais recentes de acordo com o site TheMovieDB.");
+                obtemFilmesEmBreve();
+                break;
+        }
+    }
+
     @Override
     public void obtemFilmesEmBreve() { // Método que faz a chamada da API e retorna os filmes populares para a view
         ApiService.getInstance()// Instancia o serviço da API

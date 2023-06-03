@@ -11,8 +11,10 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.emoji2.text.EmojiCompat;
+import androidx.fragment.app.FragmentManager;
 
 import com.uniritter.to100ideia.data.model.Filme;
+import com.uniritter.to100ideia.ui.listaFilmes.ListaFilmesFragment;
 import com.unirriter.api_filmes.R;
 import com.unirriter.api_filmes.databinding.ActivityDetalhesFilmeBinding;
 
@@ -29,6 +31,10 @@ public class DetalhesFilmeActivity
     private DetalhesFilmeContrato.DetalhesFilmePresenter presenter;
 
     private ImageView favorito;
+
+    // Get a reference to your fragment
+    ListaFilmesFragment listaFilmesFragment = new ListaFilmesFragment();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,6 +100,14 @@ public class DetalhesFilmeActivity
             });
         }
     }
+
+    /*@Override
+    public void onBackPressed() {
+        listaFilmesFragment.restartFragment();
+        *//*FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction().detach(listaFilmesFragment).attach(listaFilmesFragment).commit();*//*
+        finish();
+    }*/
 
 
 }

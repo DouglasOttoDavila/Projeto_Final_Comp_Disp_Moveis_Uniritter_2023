@@ -10,7 +10,7 @@ public interface ListaFilmesContrato {
 
         void mostraFilmes(List<Filme> filmes);
         void mostraErro();
-
+        void updateView(String titulo, String descricao);
     }
 
     interface ListaFilmesPresenter {
@@ -18,6 +18,7 @@ public interface ListaFilmesContrato {
         void obtemFilmesTop();
         void obtemFilmesEmBreve();
         void destruirView();
+        void setEndpoint(String endpoint);
 
     }
 }

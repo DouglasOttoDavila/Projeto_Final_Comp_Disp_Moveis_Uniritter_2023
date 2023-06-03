@@ -26,7 +26,6 @@ import com.uniritter.to100ideia.data.model.Filme;
 import com.unirriter.api_filmes.databinding.ActivityDetalhesFilmeBinding;
 
 import java.util.List;
-import java.util.concurrent.atomic.AtomicReference;
 
 public class DetalhesFilmePresenter
         implements DetalhesFilmeContrato.DetalhesFilmePresenter {

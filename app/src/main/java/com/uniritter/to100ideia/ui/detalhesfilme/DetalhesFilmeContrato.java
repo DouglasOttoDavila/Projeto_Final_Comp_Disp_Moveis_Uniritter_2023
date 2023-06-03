@@ -1,6 +1,5 @@
 package com.uniritter.to100ideia.ui.detalhesfilme;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.widget.Button;

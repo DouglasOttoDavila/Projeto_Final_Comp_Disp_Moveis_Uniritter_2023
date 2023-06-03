@@ -124,12 +124,12 @@ public class ListaFilmesAdapter
                 Log.e(TAG, "Error querying Firestore", e);
             });
         }
-
     }
 
     public void setFilmes (List<Filme> filmes) { // Método que atribui a lista de filmes
         this.filmes = filmes; // Atribui a lista de filmes
         notifyDataSetChanged(); // Notifica o adapter que a lista de filmes foi alterada
+        Log.d("SetFilmes", "Quantidade de filmes: " + filmes.size());
     }
 
     public interface ItemFilmeClickListener { // Interface que define o listener do item da lista
