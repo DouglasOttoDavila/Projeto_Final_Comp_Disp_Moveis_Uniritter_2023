@@ -61,7 +61,6 @@ public class MenuActivity
 
         binding.meusFavoritosTxt.setOnClickListener(v -> {
             Intent intent = new Intent(MenuActivity.this, FilmesFavoritosActivity.class);
-            /*intent.putExtra("endpoint", "recentes");*/
             startActivity(intent);
         });
 

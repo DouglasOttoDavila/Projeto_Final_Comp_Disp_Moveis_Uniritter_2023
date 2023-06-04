@@ -38,6 +38,10 @@ public class FilmesFavoritosActivity
 
         configuraAdapter();
 
+        binding.voltarBtn.setOnClickListener(v -> {
+            finish();
+        });
+
         binding.theMovieDbLogo.setOnClickListener(v -> {
             String url = "https://www.themoviedb.org/";
             Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
@@ -62,6 +66,7 @@ public class FilmesFavoritosActivity
         binding.recyclerFavoritos.setVisibility(View.GONE);
         binding.imgFavNull.setVisibility(View.VISIBLE);
         binding.textFavNull.setVisibility(View.VISIBLE);
+        binding.voltarBtn.setVisibility(View.VISIBLE);
     }
 
     @Override
