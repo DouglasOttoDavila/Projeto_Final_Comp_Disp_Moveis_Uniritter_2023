@@ -11,14 +11,16 @@ public interface ListaFilmesContrato {
         void mostraFilmes(List<Filme> filmes);
         void mostraErro();
         void updateView(String titulo, String descricao);
+        void configuraAdapter();
     }
 
     interface ListaFilmesPresenter {
+        void configuraAdapter();
+
         void obtemFilmesPopulares();
         void obtemFilmesTop();
         void obtemFilmesEmBreve();
         void destruirView();
         void setEndpoint(String endpoint);
-
     }
 }

@@ -19,6 +19,11 @@ public class ListaFilmesPresenter
     }
 
     @Override
+    public void configuraAdapter() {
+        view.configuraAdapter();
+    }
+
+    @Override
     public void obtemFilmesPopulares() { // Método que faz a chamada da API e retorna os filmes populares para a view
         ApiService.getInstance()// Instancia o serviço da API
                 .obterFilmesPopulares(ApiService.apiKeyConfig(), ApiService.apiLanguageConfig())  // Chama o método que retorna os filmes populares

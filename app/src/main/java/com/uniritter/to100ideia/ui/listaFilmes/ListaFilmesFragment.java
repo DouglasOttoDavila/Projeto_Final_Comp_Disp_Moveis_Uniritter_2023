@@ -58,7 +58,7 @@ public class ListaFilmesFragment
         Log.d("onStart", "onStart!");
         String endpoint = getArguments().getString("endpoint");
         presenter.setEndpoint(endpoint);
-        configuraAdapter();
+        presenter.configuraAdapter();
     }
 
     @Override
@@ -73,14 +73,15 @@ public class ListaFilmesFragment
         Log.d("onPause", "onPause!");
     }
 
-    private void configuraAdapter() {
+    @Override
+    public void configuraAdapter() {
         filmesAdapter = new ListaFilmesAdapter(this);
         int numberOfColumns = 2;
         RecyclerView.LayoutManager gridLayoutManager = new GridLayoutManager(requireContext(), numberOfColumns);
         RecyclerView recyclerView = requireView().findViewById(R.id.recycler_filmes);
         recyclerView.setLayoutManager(gridLayoutManager);
         recyclerView.setAdapter(filmesAdapter);
-        Log.e("configuraAdapter", "configuraAdapter!");
+        Log.d("configuraAdapter()", "Adapter Configurado!");
     }
 
     @Override
