@@ -23,8 +23,8 @@ import com.unirriter.api_filmes.R;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ListaFilmesAdapter
-        extends RecyclerView.Adapter<ListaFilmesAdapter.ListaFilmesViewHolder> {
+public class ListaFilmesAdapter // Classe que representa o adapter da lista de filmes
+        extends RecyclerView.Adapter<ListaFilmesAdapter.ListaFilmesViewHolder> { // Herda da classe RecyclerView.Adapter e passa o viewholder como parâmetro
 
     private List<Filme> filmes;
 
@@ -73,22 +73,20 @@ public class ListaFilmesAdapter
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (itemFilmeClickListener != null)
-                        itemFilmeClickListener.onItemFilmeClicado(filme);
+                    if (itemFilmeClickListener != null) // Verifica se o listener do item da lista não é nulo
+                        itemFilmeClickListener.onItemFilmeClicado(filme); // Chama o método que trata o evento de clique no item da lista
                 }
             });
         }
 
         public void bind(Filme filme) { // Método que atribui os valores aos componentes para cada item da lista na posição específica
             this.filme = filme; // Atribui o filme
-
             String titulo = filme.getTitulo(); // Atribui o título do filme a uma variável
             textTituloFilme.setText(titulo); // Atribui o título do filme ao componente de texto do item da lista
             String resolution = "w342"; // Define a resolução da imagem
             Picasso.get() // Carrega a imagem do filme
                     .load("https://image.tmdb.org/t/p/"+ resolution + "/" + filme.getCaminhoPoster()) // Define a URL da imagem
                     .into(imagePosterFilme); // Atribui a imagem ao componente de imagem do item da lista
-
             checkFilmeFavorito(titulo, estrelaFav); // Chama o método que verifica se o filme é favorito
         }
     }

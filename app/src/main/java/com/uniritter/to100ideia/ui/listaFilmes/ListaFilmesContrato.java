@@ -4,7 +4,7 @@ import com.uniritter.to100ideia.data.model.Filme;
 
 import java.util.List;
 
-public interface ListaFilmesContrato {
+public interface ListaFilmesContrato { // Contrato entre a View e o Presenter
 
     interface ListaFilmesView {
 

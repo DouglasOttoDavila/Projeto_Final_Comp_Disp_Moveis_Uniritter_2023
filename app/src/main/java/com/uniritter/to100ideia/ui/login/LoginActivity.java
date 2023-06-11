@@ -1,42 +1,31 @@
 package com.uniritter.to100ideia.ui.login;
+
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
-import android.text.TextUtils;
-import android.util.Patterns;
 import android.view.View;
 import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
-
-import com.google.firebase.auth.FirebaseAuth;
-import com.uniritter.to100ideia.data.network.FirebaseService;
 import com.uniritter.to100ideia.ui.cadastro.CadastroActivity;
-import com.uniritter.to100ideia.ui.menu.MenuActivity;
 import com.unirriter.api_filmes.databinding.ActivityLoginBinding;
-public class LoginActivity
-        extends AppCompatActivity
-        implements LoginContrato.LoginView {
 
-    //Cria o binding para a activity
-    ActivityLoginBinding binding;
+public class LoginActivity //Classe da activity de login
+        extends AppCompatActivity //Extende a classe AppCompatActivity
+        implements LoginContrato.LoginView { //Implementa a interface LoginView
 
-    //Declara o presenter da activity
-    private LoginContrato.LoginPresenter presenter;
+    ActivityLoginBinding binding; //Declara o binding da activity
+    private LoginContrato.LoginPresenter presenter; //Declara o presenter da activity
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected void onCreate(Bundle savedInstanceState) { //Método de criação da activity
+        super.onCreate(savedInstanceState); //Chama o método onCreate da classe AppCompatActivity
+        binding = ActivityLoginBinding.inflate(getLayoutInflater()); //Inicializa o binding da activity
+        View view = binding.getRoot(); //Inicializa a view da activity
+        setContentView(view); //Seta o conteúdo da activity
 
-        //Infla o layout da activity através do binding
-        binding = ActivityLoginBinding.inflate(getLayoutInflater());
-        View view = binding.getRoot();
-        setContentView(view);
-
-        //Inicializa o presenter da activity
-        presenter = new LoginPresenter(this);
+        presenter = new LoginPresenter(this); //Inicializa o presenter da activity
 
         //Verifica se o usuário já está logado através do SharedPreferences
         SharedPreferences sharedPreferences = getSharedPreferences("UserSession", Context.MODE_PRIVATE);
@@ -85,4 +74,5 @@ public class LoginActivity
     public void mostraMsg(String message) {
         Toast.makeText(this, message, Toast.LENGTH_LONG).show();
     }
+
 }

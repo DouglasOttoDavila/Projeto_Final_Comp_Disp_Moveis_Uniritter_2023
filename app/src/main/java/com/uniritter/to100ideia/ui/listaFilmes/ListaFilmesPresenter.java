@@ -9,17 +9,17 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class ListaFilmesPresenter
-        implements ListaFilmesContrato.ListaFilmesPresenter {
+public class ListaFilmesPresenter // Classe que implementa a interface ListaFilmesContrato.ListaFilmesPresenter
+        implements ListaFilmesContrato.ListaFilmesPresenter { // Implementa a interface ListaFilmesContrato.ListaFilmesPresenter
 
-    private ListaFilmesContrato.ListaFilmesView view;
+    private ListaFilmesContrato.ListaFilmesView view; // Instancia a interface ListaFilmesContrato.ListaFilmesView
 
-    public ListaFilmesPresenter(ListaFilmesContrato.ListaFilmesView view) {
+    public ListaFilmesPresenter(ListaFilmesContrato.ListaFilmesView view) { // Construtor da classe
         this.view = view;
     }
 
     @Override
-    public void configuraAdapter() {
+    public void configuraAdapter() { // Método que configura o adapter da view
         view.configuraAdapter();
     }
 
@@ -46,19 +46,19 @@ public class ListaFilmesPresenter
                 });
     }
 
-    @Override public void setEndpoint(String endpoint) {
+    @Override public void setEndpoint(String endpoint) { // Método que configura o endpoint da API
         switch (endpoint) {
             case "populares":
-                view.updateView("Filmes Populares", "Os filmes mais populares do momento de acordo com o site TheMovieDB.");
-                obtemFilmesPopulares();
+                view.updateView("Filmes Populares", "Os filmes mais populares do momento de acordo com o site TheMovieDB."); // Chama o método da view que atualiza o título e a descrição
+                obtemFilmesPopulares(); // Chama o método que faz a chamada da API e retorna os filmes populares para a view
                 break;
             case "top":
-                view.updateView("Melhores Avaliações", "Os filmes mais bem-avaliados de acordo com o site TheMovieDB.");
-                obtemFilmesTop();
+                view.updateView("Melhores Avaliações", "Os filmes mais bem-avaliados de acordo com o site TheMovieDB."); // Chama o método da view que atualiza o título e a descrição
+                obtemFilmesTop(); // Chama o método que faz a chamada da API e retorna os filmes populares para a view
                 break;
             case "recentes":
-                view.updateView("Lançamentos Recentes", "Os filmes mais recentes de acordo com o site TheMovieDB.");
-                obtemFilmesEmBreve();
+                view.updateView("Lançamentos Recentes", "Os filmes mais recentes de acordo com o site TheMovieDB."); // Chama o método da view que atualiza o título e a descrição
+                obtemFilmesEmBreve(); // Chama o método que faz a chamada da API e retorna os filmes populares para a view
                 break;
         }
     }
@@ -113,6 +113,5 @@ public class ListaFilmesPresenter
     public void destruirView() { // Método que destrói a view para evitar memory leak (vazamento de memória)
         view = null;
     }
-
 
 }

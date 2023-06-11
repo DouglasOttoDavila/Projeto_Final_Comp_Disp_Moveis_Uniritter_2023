@@ -1,36 +1,27 @@
 package com.uniritter.to100ideia.ui.filmesFavoritos;
 
 import static android.content.ContentValues.TAG;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.FirebaseFirestore;
 import com.squareup.picasso.Picasso;
 import com.unirriter.api_filmes.R;
-import com.unirriter.api_filmes.databinding.ActivityFilmesFavoritosBinding;
-
 import java.util.List;
 
-public class FilmesFavoritosAdapter
+public class FilmesFavoritosAdapter // Define o adapter
         extends RecyclerView.Adapter<FilmesFavoritosAdapter.ViewHolder> {
 
     private List<String> titulos; // Define a lista de titulos
-    private FilmesFavoritosPresenter presenter;
+    private FilmesFavoritosPresenter presenter; // Define o presenter
 
-    public FilmesFavoritosAdapter(List<String> titulos, FilmesFavoritosPresenter presenter) {
+    public FilmesFavoritosAdapter(List<String> titulos, FilmesFavoritosPresenter presenter) { // Construtor do adapter
         this.titulos = titulos;
         this.presenter = presenter;
-    } // Construtor
-
+    }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) { // Cria a view
@@ -41,55 +32,50 @@ public class FilmesFavoritosAdapter
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) { // Define o conteúdo da view
-        holder.textViewFavorito.setText(titulos.get(position));
-        presenter.getUrlFavorito(position, new FilmesFavoritosPresenter.UrlCallback() {
+        holder.textViewFavorito.setText(titulos.get(position)); // Define o texto do item da lista
+        presenter.getUrlFavorito(position, new FilmesFavoritosPresenter.UrlCallback() { // Carrega a imagem do filme
             @Override
-            public void onUrlReceived(String url) {
+            public void onUrlReceived(String url) { // Atribui a imagem ao componente de imagem do item da lista
                 setItemImage(holder.imgFavorito, url);
             }
 
             @Override
-            public void onFailure(String errorMessage) {
-                // Handle the failure, e.g., display a placeholder image or show an error message
+            public void onFailure(String errorMessage) { // Caso ocorra um erro
+                Log.e(TAG, errorMessage); // Exibe o erro no log
             }
         });
 
-        // Set the click listener for the delete button
-        holder.imgRemove.setOnClickListener(v -> {
-            // Call the presenter method to remove the movie from Firestore
-            presenter.removeFavorito(position);
+        holder.imgRemove.setOnClickListener(v -> { // Define o evento de click no botão de remover
+            presenter.removeFavorito(position); // Remove o filme da lista de favoritos
         });
     }
 
-    public void setItemImage(ImageView imageView, String imageUrl) {
-
+    public void setItemImage(ImageView imageView, String imageUrl) { // Define a imagem do item da lista
         String resolution = "w342"; // Define a resolução da imagem
         Picasso.get() // Carrega a imagem do filme
                 .load("https://image.tmdb.org/t/p/"+ resolution + "/" + imageUrl) // Define a URL da imagem
-                .resize(50, 50)
-                .centerCrop()
+                .resize(50, 50) // Define o tamanho da imagem
+                .centerCrop() // Define o tipo de corte da imagem
                 .into(imageView); // Atribui a imagem ao componente de imagem do item da lista
-        Log.w(TAG, "https://image.tmdb.org/t/p/"+ resolution + "/" + imageUrl);
+        Log.w(TAG, "https://image.tmdb.org/t/p/"+ resolution + "/" + imageUrl); // Exibe a URL da imagem no log
     }
 
     @Override
     public int getItemCount() {
         return titulos.size();
-    }
+    } // Retorna a quantidade de itens da lista
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView textViewFavorito;
-        public ImageView imgFavorito;
+    public static class ViewHolder extends RecyclerView.ViewHolder { // Define a view
+        public TextView textViewFavorito; // Define o componente de texto do item da lista
+        public ImageView imgFavorito; // Define o componente de imagem do item da lista
+        public ImageView imgRemove; // Define o componente de imagem do botão de remover
 
-        public ImageView imgRemove;
-
-        public ViewHolder(View itemView) {
-            super(itemView);
-            textViewFavorito = itemView.findViewById(R.id.textViewFavorito);
-            imgFavorito = itemView.findViewById(R.id.imgFavorito);
-            imgRemove = itemView.findViewById(R.id.imgRemove);
+        public ViewHolder(View itemView) { // Construtor da view
+            super(itemView); // Define a view
+            textViewFavorito = itemView.findViewById(R.id.textViewFavorito); // Define o componente de texto do item da lista
+            imgFavorito = itemView.findViewById(R.id.imgFavorito); // Define o componente de imagem do item da lista
+            imgRemove = itemView.findViewById(R.id.imgRemove); // Define o componente de imagem do botão de remover
         }
     }
-
 
 }
