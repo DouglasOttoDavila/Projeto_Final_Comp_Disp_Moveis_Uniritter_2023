@@ -94,31 +94,29 @@ public class ListaFilmesAdapter // Classe que representa o adapter da lista de f
     public static void checkFilmeFavorito(String titulo, ImageView estrelaFav) { // Método que verifica se o filme é favorito e atribui a imagem da estrela de favorito ao componente de imagem do item da lista
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null) {
-            // Get the current user's UID
+            // Pega o uid do usuário logado
             String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
-            // Get a reference to the Firestore database for the current user
+            // Pega a instância do Firestore e a referência do documento do usuário
             FirebaseFirestore db = FirebaseFirestore.getInstance();
             DocumentReference docRef = db.collection("usuarios").document(uid);
 
-            // Check if the given movie title exists in the user's favorite movies array
+            // Captura o documento do usuário no Firestore e verifica se o título do filme existe no array de filmes favoritos do usuário
             docRef.get().addOnSuccessListener(documentSnapshot -> {
                 if (documentSnapshot.exists()) {
                     List<String> filmesFavoritos = (List<String>) documentSnapshot.get("filmesFavoritos");
                     if (filmesFavoritos != null && filmesFavoritos.contains(titulo)) {
-                        // If the given movie title exists in the user's favorite movies array,
-                        // set the star image view to the filled star icon to indicate that the movie is a favorite
+                        // Se o título do filme existir no array de filmes favoritos do usuário, atribui a imagem da estrela de favorito ao componente de imagem do item da lista
                         Log.d(TAG, "FILME É FAVORITO: " + titulo);
                         estrelaFav.setVisibility(View.VISIBLE);
                     } else {
-                        // If the given movie title does not exist in the user's favorite movies array,
-                        // set the star image view to the empty star icon to indicate that the movie is not a favorite
+                        // Se o título do filme não existir no array de filmes favoritos do usuário, atribui a imagem da estrela de favorito ao componente de imagem do item da lista
                         Log.d(TAG, "FILME NÃO É FAVORITO");
                         estrelaFav.setVisibility(View.INVISIBLE);
                     }
                 }
             }).addOnFailureListener(e -> {
-                // Handle any errors that occur while querying the database
+                // Se ocorrer um erro, exibe uma mensagem de erro
                 Log.e(TAG, "Error querying Firestore", e);
             });
         }
